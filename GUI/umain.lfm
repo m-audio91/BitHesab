@@ -31,10 +31,10 @@ object BH: TBH
     ParentColor = False
     TabOrder = 6
     object HeaderTexts: TPanel
-      Left = 55
+      Left = -13
       Height = 60
       Top = 6
-      Width = 326
+      Width = 394
       Align = alRight
       AutoSize = True
       BorderSpacing.Top = 6
@@ -42,13 +42,13 @@ object BH: TBH
       BorderSpacing.Bottom = 6
       BevelOuter = bvNone
       ClientHeight = 60
-      ClientWidth = 326
+      ClientWidth = 394
       TabOrder = 0
       object HeaderSupportTitleL: TLabel
         Left = 0
-        Height = 15
-        Top = 17
-        Width = 326
+        Height = 17
+        Top = 19
+        Width = 394
         Align = alTop
         BidiMode = bdRightToLeft
         BorderSpacing.Top = 2
@@ -60,9 +60,9 @@ object BH: TBH
       end
       object HeaderTitleL: TLabel
         Left = 0
-        Height = 15
+        Height = 17
         Top = 0
-        Width = 326
+        Width = 394
         Align = alTop
         Caption = 'بیت حساب - محاسبه گر نرخ بیت و حجم فایل خروجی قبل از تبدیل'
         Font.Color = clWindow
@@ -72,7 +72,7 @@ object BH: TBH
       end
     end
     object HeaderIcon: TImage
-      Left = 1
+      Left = -48
       Height = 60
       Top = 6
       Width = 48
@@ -117,7 +117,7 @@ object BH: TBH
   end
   object DuratonContainer: TPanel
     Left = 6
-    Height = 23
+    Height = 27
     Top = 80
     Width = 375
     Align = alTop
@@ -130,7 +130,7 @@ object BH: TBH
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
     Caption = 'مدت زمان'
-    ClientHeight = 23
+    ClientHeight = 27
     ClientWidth = 375
     Color = clForm
     ParentBidiMode = False
@@ -138,7 +138,7 @@ object BH: TBH
     TabOrder = 0
     object DurH: TSpinEdit
       Left = 0
-      Height = 23
+      Height = 27
       Top = 0
       Width = 80
       Align = alLeft
@@ -149,7 +149,7 @@ object BH: TBH
     end
     object Sep1: TLabel
       Left = 82
-      Height = 23
+      Height = 27
       Top = 0
       Width = 3
       Align = alLeft
@@ -161,7 +161,7 @@ object BH: TBH
     end
     object DurM: TSpinEdit
       Left = 87
-      Height = 23
+      Height = 27
       Top = 0
       Width = 80
       Align = alLeft
@@ -173,7 +173,7 @@ object BH: TBH
     end
     object Sep2: TLabel
       Left = 169
-      Height = 23
+      Height = 27
       Top = 0
       Width = 3
       Align = alLeft
@@ -185,7 +185,7 @@ object BH: TBH
     end
     object DurS: TSpinEdit
       Left = 174
-      Height = 23
+      Height = 27
       Top = 0
       Width = 80
       Align = alLeft
@@ -197,8 +197,8 @@ object BH: TBH
   end
   object aBitContainer: TPanel
     Left = 6
-    Height = 23
-    Top = 107
+    Height = 27
+    Top = 111
     Width = 375
     Align = alTop
     Alignment = taRightJustify
@@ -210,7 +210,7 @@ object BH: TBH
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
     Caption = 'نرخ بیت صدا(ها)'
-    ClientHeight = 23
+    ClientHeight = 27
     ClientWidth = 375
     Color = clForm
     ParentBidiMode = False
@@ -218,7 +218,7 @@ object BH: TBH
     TabOrder = 1
     object aBit: TSpinEdit
       Left = 0
-      Height = 23
+      Height = 27
       Top = 0
       Width = 110
       Align = alLeft
@@ -226,11 +226,11 @@ object BH: TBH
       MaxValue = 20000
       OnKeyDown = FormKeyDown
       TabOrder = 0
-      Value = 128
+      Value = 96
     end
     object aBitUnitL: TLabel
       Left = 112
-      Height = 23
+      Height = 27
       Top = 0
       Width = 24
       Align = alLeft
@@ -243,8 +243,8 @@ object BH: TBH
   end
   object OverheadContainer: TPanel
     Left = 6
-    Height = 23
-    Top = 134
+    Height = 27
+    Top = 142
     Width = 375
     Align = alTop
     Alignment = taRightJustify
@@ -256,7 +256,7 @@ object BH: TBH
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
     Caption = 'میزان اضافه حجم حامل'
-    ClientHeight = 23
+    ClientHeight = 27
     ClientWidth = 375
     Color = clForm
     ParentBidiMode = False
@@ -264,7 +264,7 @@ object BH: TBH
     TabOrder = 2
     object OverheadUnitL: TLabel
       Left = 112
-      Height = 23
+      Height = 27
       Top = 0
       Width = 10
       Align = alLeft
@@ -276,7 +276,7 @@ object BH: TBH
     end
     object Overhead: TFloatSpinEdit
       Left = 0
-      Height = 23
+      Height = 27
       Top = 0
       Width = 110
       Align = alLeft
@@ -291,8 +291,8 @@ object BH: TBH
   end
   object TargetRadioContainer: TPanel
     Left = 6
-    Height = 19
-    Top = 161
+    Height = 21
+    Top = 173
     Width = 375
     Align = alTop
     Alignment = taRightJustify
@@ -303,7 +303,7 @@ object BH: TBH
     BorderSpacing.Bottom = 2
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
-    ClientHeight = 19
+    ClientHeight = 21
     ClientWidth = 375
     Color = clForm
     ParentBidiMode = False
@@ -311,9 +311,9 @@ object BH: TBH
     TabOrder = 3
     object FileSizeBased: TRadioButton
       Left = 0
-      Height = 19
+      Height = 21
       Top = 0
-      Width = 99
+      Width = 113
       Align = alLeft
       BidiMode = bdRightToLeft
       Caption = 'حجم فایل خروجی'
@@ -324,10 +324,10 @@ object BH: TBH
       TabStop = True
     end
     object vBitBased: TRadioButton
-      Left = 287
-      Height = 19
+      Left = 278
+      Height = 21
       Top = 0
-      Width = 88
+      Width = 97
       Align = alRight
       BidiMode = bdRightToLeft
       Caption = 'نرخ بیت تصویر'
@@ -338,8 +338,8 @@ object BH: TBH
   end
   object TargetValueContainer: TPanel
     Left = 6
-    Height = 48
-    Top = 184
+    Height = 54
+    Top = 198
     Width = 375
     Align = alTop
     Alignment = taLeftJustify
@@ -350,7 +350,7 @@ object BH: TBH
     BorderSpacing.Bottom = 4
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
-    ClientHeight = 48
+    ClientHeight = 54
     ClientWidth = 375
     Color = clForm
     ParentBidiMode = False
@@ -358,21 +358,21 @@ object BH: TBH
     TabOrder = 4
     object FileSizeValueContainer: TPanel
       Left = 0
-      Height = 48
+      Height = 54
       Top = 0
       Width = 110
       Align = alLeft
       BevelOuter = bvNone
-      ClientHeight = 48
+      ClientHeight = 54
       ClientWidth = 110
       TabOrder = 0
       object FileSizeUnit: TComboBox
         Left = 0
-        Height = 23
+        Height = 25
         Top = 0
         Width = 110
         Align = alTop
-        ItemHeight = 15
+        ItemHeight = 0
         ItemIndex = 0
         Items.Strings = (
           'MB'
@@ -385,8 +385,8 @@ object BH: TBH
       end
       object FileSize: TFloatSpinEdit
         Left = 0
-        Height = 23
-        Top = 25
+        Height = 27
+        Top = 27
         Width = 110
         Align = alTop
         Alignment = taCenter
@@ -402,19 +402,19 @@ object BH: TBH
     end
     object vBitValueContainer: TPanel
       Left = 265
-      Height = 48
+      Height = 54
       Top = 0
       Width = 110
       Align = alRight
       BevelOuter = bvNone
-      ClientHeight = 48
+      ClientHeight = 54
       ClientWidth = 110
       Enabled = False
       TabOrder = 1
       object vBit: TSpinEdit
         Left = 0
-        Height = 23
-        Top = 25
+        Height = 27
+        Top = 27
         Width = 110
         Align = alTop
         Alignment = taCenter
@@ -427,11 +427,11 @@ object BH: TBH
       end
       object vBitUnit: TComboBox
         Left = 0
-        Height = 23
+        Height = 25
         Top = 0
         Width = 110
         Align = alTop
-        ItemHeight = 15
+        ItemHeight = 0
         ItemIndex = 0
         Items.Strings = (
           'Kb/s'
@@ -449,10 +449,10 @@ object BH: TBH
       AnchorSideTop.Control = TargetValueContainer
       AnchorSideBottom.Control = TargetValueContainer
       AnchorSideBottom.Side = asrBottom
-      Left = 180
-      Height = 48
+      Left = 179
+      Height = 54
       Top = 0
-      Width = 15
+      Width = 17
       Align = alCustom
       Anchors = [akTop, akLeft, akBottom]
       Font.Style = [fsBold]
@@ -462,8 +462,8 @@ object BH: TBH
   end
   object Footer: TPanel
     Left = 6
-    Height = 25
-    Top = 253
+    Height = 24
+    Top = 275
     Width = 375
     Align = alTop
     Alignment = taLeftJustify
@@ -475,7 +475,7 @@ object BH: TBH
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
     Caption = 'v1.2.0'
-    ClientHeight = 25
+    ClientHeight = 24
     ClientWidth = 375
     Color = clForm
     Font.Color = clGrayText
@@ -484,10 +484,10 @@ object BH: TBH
     ParentFont = False
     TabOrder = 5
     object Calc: TButton
-      Left = 298
-      Height = 25
+      Left = 308
+      Height = 24
       Top = 0
-      Width = 77
+      Width = 67
       Align = alRight
       AutoSize = True
       Caption = 'محاسبه کن'
@@ -499,8 +499,8 @@ object BH: TBH
   end
   object Sep4: TDividerBevel
     Left = 0
-    Height = 15
-    Top = 236
+    Height = 17
+    Top = 256
     Width = 387
     Align = alTop
     Font.Style = [fsBold]
