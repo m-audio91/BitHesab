@@ -5,6 +5,8 @@ v1.0.2 CLI
 
 Free video bitrate/file size calculator. available in both CLI and GUI versions.
 
+To run the GUI with English captions run the program with `-eng` switch. or add it to it's shortcut. see extra/screenshots.
+
 Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
 ### compilation guide:  
