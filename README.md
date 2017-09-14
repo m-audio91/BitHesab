@@ -1,5 +1,5 @@
 # BitHesab
-![Image of BitHesab](https://github.com/m-audio91/BitHesab/raw/master/extra/icon/80.png)  
+![Image of BitHesab](https://github.com/m-audio91/BitHesab/raw/master/GUI/extra/icon/80.png)  
 v1.2.0 GUI
 v1.0.2 CLI
 
