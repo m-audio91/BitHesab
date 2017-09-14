@@ -15,3 +15,12 @@ Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com
 3. open the project (bithesabgui.lpi or bithesab.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* folder to your unit search paths.
 4. compile and run.
 5. issues? please report [here](https://github.com/m-audio91/BitHesab/issues)
+
+<a href="https://github.com/m-audio91/BitHesab/releases/latest">
+<span style="padding: 4px 6px; background-color: #299a4e; color: white;">
+<b>
+Download
+</b>
+</span>
+</a>
+
