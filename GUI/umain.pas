@@ -66,19 +66,20 @@ type
     DurH: TSpinEdit;
     DurM: TSpinEdit;
     DurS: TSpinEdit;
-    procedure CalcClick(Sender: TObject);
-    procedure FileSizeBasedChange(Sender: TObject);
-    procedure FileSizeUnitChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FileSizeBasedChange(Sender: TObject);
     procedure vBitBasedChange(Sender: TObject);
+    procedure FileSizeUnitChange(Sender: TObject);
     procedure vBitUnitChange(Sender: TObject);
+    procedure CalcClick(Sender: TObject);
   private
     FMode: TCalcMode;
     function DoCalc(Dur, AB, OH, FSUnit, FS, VBUnit, VB: Double;
       CalcMode: TCalcMode): Double;
   public
-
+    FIsEnglish: Boolean;
   end;
 
 var
@@ -115,6 +116,21 @@ begin
     Top := AUrl.Top+AUrl.Height;
   end;
   FMode := cmCalcvBit;
+end;
+
+procedure TBH.FormShow(Sender: TObject);
+begin
+  if FIsEnglish then
+  begin
+    Calc.Caption := 'Calculate';
+    DuratonContainer.Caption := 'Duration';
+    aBitContainer.Caption := 'Audio Bitrates';
+    vBitBased.Caption := 'Video Bitrate';
+    OverheadContainer.Caption := 'Container Overhead';
+    FileSizeBased.Caption := 'File Size';
+    HeaderTitleL.Caption := 'BitHesab - Calculate bitrate and file size before conversion';
+    HeaderSupportTitleL.Caption := ':Update, Support and Issue Reporting';
+  end;
 end;
 
 procedure TBH.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

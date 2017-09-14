@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="2"/>
-      <BuildNr Value="119"/>
+      <BuildNr Value="127"/>
       <StringTable FileDescription="Free video bitrate/file size calculator. available in both CLI and GUI versions." ProductName="BitHesab" ProductVersion="1.2.0.24"/>
     </VersionInfo>
     <BuildModes Count="3">

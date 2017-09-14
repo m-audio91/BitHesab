@@ -13,6 +13,7 @@ object BH: TBH
   Constraints.MinWidth = 387
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.9.0.0'
   object Header: TPanel
@@ -473,7 +474,7 @@ object BH: TBH
     BorderSpacing.Bottom = 8
     BevelOuter = bvNone
     BidiMode = bdRightToLeftNoAlign
-    Caption = 'نسخه 1.2'
+    Caption = 'v1.2.0'
     ClientHeight = 25
     ClientWidth = 375
     Color = clForm

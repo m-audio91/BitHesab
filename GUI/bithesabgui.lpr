@@ -33,6 +33,10 @@ begin
   RequireDerivedFormResource:=True;
   Application.Initialize;
   Application.CreateForm(TBH, BH);
+  if (Application.ParamCount > 0) and (LowerCase(ParamStr(1)) = '-eng') then
+    BH.FIsEnglish := True
+  else
+    BH.FIsEnglish := False;
   Application.Run;
 end.
 
