@@ -1,4 +1,22 @@
 program BitHesab;
+{ BitHesab: Free video bitrate/file size calculator. available in both CLI and
+  GUI versions.
+
+  Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}
 
 {$mode objfpc}{$H+}
 
@@ -65,6 +83,8 @@ resourcestring
   + 'Compiled on %s using Free Pascal Compiler, version %s'
   + LineEnding
   + 'Copyright (c) 2015-%s Mohammadreza Bahrami, http://mohammadrezab.blogsky.com'
+  + LineEnding
+  + 'Source code available at https://github.com/m-audio91/BitHesab under the terms of the GNU General Public License version 3.0'
   + LineEnding
   + LineEnding
   + 'Usage with -short options: BitHesab -O1 -O2 VALUE2 -O3 VALUE3...'
