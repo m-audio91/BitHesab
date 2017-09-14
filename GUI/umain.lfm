@@ -1,0 +1,508 @@
+object BH: TBH
+  Left = 855
+  Height = 287
+  Top = 211
+  Width = 387
+  AutoSize = True
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'BitHesab'
+  ClientHeight = 287
+  ClientWidth = 387
+  Constraints.MinHeight = 238
+  Constraints.MinWidth = 387
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poScreenCenter
+  LCLVersion = '1.9.0.0'
+  object Header: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 387
+    Align = alTop
+    Alignment = taLeftJustify
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 387
+    Color = 4342338
+    ParentColor = False
+    TabOrder = 6
+    object HeaderTexts: TPanel
+      Left = 55
+      Height = 60
+      Top = 6
+      Width = 326
+      Align = alRight
+      AutoSize = True
+      BorderSpacing.Top = 6
+      BorderSpacing.Right = 6
+      BorderSpacing.Bottom = 6
+      BevelOuter = bvNone
+      ClientHeight = 60
+      ClientWidth = 326
+      TabOrder = 0
+      object HeaderSupportTitleL: TLabel
+        Left = 0
+        Height = 15
+        Top = 17
+        Width = 326
+        Align = alTop
+        BidiMode = bdRightToLeft
+        BorderSpacing.Top = 2
+        Caption = 'بروزرسانی، پشتیبانی و گزارش خطا:'
+        Font.Color = clWhite
+        ParentBidiMode = False
+        ParentColor = False
+        ParentFont = False
+      end
+      object HeaderTitleL: TLabel
+        Left = 0
+        Height = 15
+        Top = 0
+        Width = 326
+        Align = alTop
+        Caption = 'بیت حساب - محاسبه گر نرخ بیت و حجم فایل خروجی قبل از تبدیل'
+        Font.Color = clWindow
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object HeaderIcon: TImage
+      Left = 1
+      Height = 60
+      Top = 6
+      Width = 48
+      Align = alRight
+      BorderSpacing.Around = 6
+      Center = True
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963B603000089504E47
+        0D0A1A0A0000000D49484452000000300000003C080600000020C039FC000000
+        0970485973000058950000589501D96D37D30000001974455874536F66747761
+        7265007777772E696E6B73636170652E6F72679BEE3C1A000003434944415468
+        81ED98CB6F1B451C80BFF5BAD96CFCD8DA89EDD84E52E74D1EB4444D082F8154
+        50A5AA07D40B6A2404076E55D50312370E08107F081212520F483D005211A595
+        7888B688674B5CF2B0EBA4D8158DD3D8691AEFEE704859408A1B192A2646F39D
+        76667E3B33DFFE5633B3AB15BE7847D0C4F8644FE0DFA20464A30464E3AFD7F0
+        D2EB9FFC97F3D89177DF7E6EDBFAA6CFC0FF5FC034FC0CF658B4B5FEF9B645AD
+        5602E61EAFBC2F1922D16E7AE544BB492615FA5B3F5D89A077DDD6BAD5A7696C
+        F5E9D77D0C745B58C1162F261C68C10A193B0AE8AFBEF2EC1BDB357CF0E93CBA
+        AEF1E689698410BC7874980BDF2C333D9EE0E4F18729FEB6CE52A9CAB1437D4C
+        EFEFE4C9479254376C92B100334786C8A442A4E341B2F9554E1E1FE7F9677AF9
+        E8F33C468BCE5B271EC3715D668E0C71EED212AFBD3C413868F0C2E141BE9DBD
+        496F3ACCA999FD681A647365008E1DEADB56E0BE19E8E90CE1BA82D367E758AD
+        6CD2DF6571E94A89D9C5B217333516E7CC670B9CBFBCCCE4689CC9D118172E2F
+        73E6FC2293A3315C57F0FEC7BF78F17DE9306BEB9B9C3E3B87E308467A230C74
+        5BBCF761966BF932E3031D6473652EFE54DAF1E9C37D562100BFAE51B35D001C
+        57A0EB1A9B35D7AB03F0F9346CC7C5B65D749F8660AB5CB35D74DD871082EA9D
+        9A17AFEB1AF6BDFB6DC7C5D8E3C7710442086CC7F5C6FCEB18FF58A050AA120D
+        1B4C8D254875B4915B5E23150BB03764D0950872657E85B9EBB779E2409244D4
+        6436574608C1C19118E97890B9EBAB681A8CF446F0FB75067B2CF2372A7476B4
+        313596201A36B8BA708BDBD54D9E9A48329C8970EEE212B188492C62E20A97A8
+        65706BF56EDD396AF54EA37FEC03E97890D1FE08D9C532B91B6B0C6722A46201
+        00BECBDEA4B25EE3F1034936EEDA7CFD63118047C71398869F2FBFFF15DB7679
+        FA601A803B1B35BEFAA1C8BE6488A1CC5EAECEAF50285668B75A9978A88342A9
+        CACF0B2BF47486E8EFB600B8962F532856EAEE033B0AEC16D446B65BA9FB0A35
+        0B4D9F0125201B25209B86BFC8EA6D288DC63FA8719B3E034A40364A4036EA2C
+        241B25201B25201B7516928D12908D12904DDD55A8D1D5A3D1F80745D3674009
+        C84609C866D79D851AA5E933A00464A30464A3FE0BC94609C84609C8E677A376
+        29540678927E0000000049454E44AE426082
+      }
+      Proportional = True
+    end
+  end
+  object DuratonContainer: TPanel
+    Left = 6
+    Height = 23
+    Top = 80
+    Width = 375
+    Align = alTop
+    Alignment = taRightJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 2
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    Caption = 'مدت زمان'
+    ClientHeight = 23
+    ClientWidth = 375
+    Color = clForm
+    ParentBidiMode = False
+    ParentColor = False
+    TabOrder = 0
+    object DurH: TSpinEdit
+      Left = 0
+      Height = 23
+      Top = 0
+      Width = 80
+      Align = alLeft
+      Alignment = taCenter
+      MaxValue = 59
+      OnKeyDown = FormKeyDown
+      TabOrder = 0
+    end
+    object Sep1: TLabel
+      Left = 82
+      Height = 23
+      Top = 0
+      Width = 3
+      Align = alLeft
+      BorderSpacing.Left = 2
+      BorderSpacing.Right = 2
+      Caption = ':'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object DurM: TSpinEdit
+      Left = 87
+      Height = 23
+      Top = 0
+      Width = 80
+      Align = alLeft
+      Alignment = taCenter
+      MaxValue = 59
+      OnKeyDown = FormKeyDown
+      TabOrder = 1
+      Value = 45
+    end
+    object Sep2: TLabel
+      Left = 169
+      Height = 23
+      Top = 0
+      Width = 3
+      Align = alLeft
+      BorderSpacing.Left = 2
+      BorderSpacing.Right = 2
+      Caption = ':'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object DurS: TSpinEdit
+      Left = 174
+      Height = 23
+      Top = 0
+      Width = 80
+      Align = alLeft
+      Alignment = taCenter
+      MaxValue = 59
+      OnKeyDown = FormKeyDown
+      TabOrder = 2
+    end
+  end
+  object aBitContainer: TPanel
+    Left = 6
+    Height = 23
+    Top = 107
+    Width = 375
+    Align = alTop
+    Alignment = taRightJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 2
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    Caption = 'نرخ بیت صدا(ها)'
+    ClientHeight = 23
+    ClientWidth = 375
+    Color = clForm
+    ParentBidiMode = False
+    ParentColor = False
+    TabOrder = 1
+    object aBit: TSpinEdit
+      Left = 0
+      Height = 23
+      Top = 0
+      Width = 110
+      Align = alLeft
+      Alignment = taCenter
+      MaxValue = 20000
+      OnKeyDown = FormKeyDown
+      TabOrder = 0
+      Value = 128
+    end
+    object aBitUnitL: TLabel
+      Left = 112
+      Height = 23
+      Top = 0
+      Width = 24
+      Align = alLeft
+      BorderSpacing.Left = 2
+      BorderSpacing.Right = 2
+      Caption = 'Kb/s'
+      Layout = tlCenter
+      ParentColor = False
+    end
+  end
+  object OverheadContainer: TPanel
+    Left = 6
+    Height = 23
+    Top = 134
+    Width = 375
+    Align = alTop
+    Alignment = taRightJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 2
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    Caption = 'میزان اضافه حجم حامل'
+    ClientHeight = 23
+    ClientWidth = 375
+    Color = clForm
+    ParentBidiMode = False
+    ParentColor = False
+    TabOrder = 2
+    object OverheadUnitL: TLabel
+      Left = 112
+      Height = 23
+      Top = 0
+      Width = 10
+      Align = alLeft
+      BorderSpacing.Left = 2
+      BorderSpacing.Right = 2
+      Caption = '%'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object Overhead: TFloatSpinEdit
+      Left = 0
+      Height = 23
+      Top = 0
+      Width = 110
+      Align = alLeft
+      Alignment = taCenter
+      Increment = 0.2
+      MaxValue = 100
+      MinValue = 0
+      OnKeyDown = FormKeyDown
+      TabOrder = 0
+      Value = 0
+    end
+  end
+  object TargetRadioContainer: TPanel
+    Left = 6
+    Height = 19
+    Top = 161
+    Width = 375
+    Align = alTop
+    Alignment = taRightJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 2
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    ClientHeight = 19
+    ClientWidth = 375
+    Color = clForm
+    ParentBidiMode = False
+    ParentColor = False
+    TabOrder = 3
+    object FileSizeBased: TRadioButton
+      Left = 0
+      Height = 19
+      Top = 0
+      Width = 99
+      Align = alLeft
+      BidiMode = bdRightToLeft
+      Caption = 'حجم فایل خروجی'
+      Checked = True
+      OnChange = FileSizeBasedChange
+      ParentBidiMode = False
+      TabOrder = 0
+      TabStop = True
+    end
+    object vBitBased: TRadioButton
+      Left = 287
+      Height = 19
+      Top = 0
+      Width = 88
+      Align = alRight
+      BidiMode = bdRightToLeft
+      Caption = 'نرخ بیت تصویر'
+      OnChange = vBitBasedChange
+      ParentBidiMode = False
+      TabOrder = 1
+    end
+  end
+  object TargetValueContainer: TPanel
+    Left = 6
+    Height = 48
+    Top = 184
+    Width = 375
+    Align = alTop
+    Alignment = taLeftJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 4
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    ClientHeight = 48
+    ClientWidth = 375
+    Color = clForm
+    ParentBidiMode = False
+    ParentColor = False
+    TabOrder = 4
+    object FileSizeValueContainer: TPanel
+      Left = 0
+      Height = 48
+      Top = 0
+      Width = 110
+      Align = alLeft
+      BevelOuter = bvNone
+      ClientHeight = 48
+      ClientWidth = 110
+      TabOrder = 0
+      object FileSizeUnit: TComboBox
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 110
+        Align = alTop
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'MB'
+          'GB'
+        )
+        OnChange = FileSizeUnitChange
+        Style = csDropDownList
+        TabOrder = 0
+        Text = 'MB'
+      end
+      object FileSize: TFloatSpinEdit
+        Left = 0
+        Height = 23
+        Top = 25
+        Width = 110
+        Align = alTop
+        Alignment = taCenter
+        BorderSpacing.Top = 2
+        DecimalPlaces = 3
+        Increment = 0.2
+        MaxValue = 1048576
+        MinValue = 0.001
+        OnKeyDown = FormKeyDown
+        TabOrder = 1
+        Value = 230
+      end
+    end
+    object vBitValueContainer: TPanel
+      Left = 265
+      Height = 48
+      Top = 0
+      Width = 110
+      Align = alRight
+      BevelOuter = bvNone
+      ClientHeight = 48
+      ClientWidth = 110
+      Enabled = False
+      TabOrder = 1
+      object vBit: TSpinEdit
+        Left = 0
+        Height = 23
+        Top = 25
+        Width = 110
+        Align = alTop
+        Alignment = taCenter
+        BorderSpacing.Top = 2
+        MaxValue = 135606
+        MinValue = 1
+        OnKeyDown = FormKeyDown
+        TabOrder = 1
+        Value = 619
+      end
+      object vBitUnit: TComboBox
+        Left = 0
+        Height = 23
+        Top = 0
+        Width = 110
+        Align = alTop
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'Kb/s'
+          'Mb/s'
+        )
+        OnChange = vBitUnitChange
+        Style = csDropDownList
+        TabOrder = 0
+        Text = 'Kb/s'
+      end
+    end
+    object Sep3: TDividerBevel
+      AnchorSideLeft.Control = TargetValueContainer
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = TargetValueContainer
+      AnchorSideBottom.Control = TargetValueContainer
+      AnchorSideBottom.Side = asrBottom
+      Left = 180
+      Height = 48
+      Top = 0
+      Width = 15
+      Align = alCustom
+      Anchors = [akTop, akLeft, akBottom]
+      Font.Style = [fsBold]
+      Orientation = trVertical
+      ParentFont = False
+    end
+  end
+  object Footer: TPanel
+    Left = 6
+    Height = 25
+    Top = 253
+    Width = 375
+    Align = alTop
+    Alignment = taLeftJustify
+    AutoSize = True
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 8
+    BevelOuter = bvNone
+    BidiMode = bdRightToLeftNoAlign
+    Caption = 'نسخه 1.2'
+    ClientHeight = 25
+    ClientWidth = 375
+    Color = clForm
+    Font.Color = clGrayText
+    ParentBidiMode = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 5
+    object Calc: TButton
+      Left = 298
+      Height = 25
+      Top = 0
+      Width = 77
+      Align = alRight
+      AutoSize = True
+      Caption = 'محاسبه کن'
+      OnClick = CalcClick
+      OnKeyDown = FormKeyDown
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object Sep4: TDividerBevel
+    Left = 0
+    Height = 15
+    Top = 236
+    Width = 387
+    Align = alTop
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+end
