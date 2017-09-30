@@ -349,6 +349,7 @@ var
 begin
   Application := TBitHesab.Create(nil);
   Application.Title:='BitHesab';
+  DefaultFormatSettings.DecimalSeparator:='.';
   Application.Run;
   Application.Free;
 end.

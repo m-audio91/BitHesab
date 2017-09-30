@@ -17,9 +17,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="70"/>
-      <StringTable CompanyName="http://mohammadrezab.blogsky.com" FileDescription="Free video bitrate/file size calculator. available in both CLI and GUI versions." InternalName="BitHesab CLI" ProductName="BitHesab" ProductVersion="1.0.2.0"/>
+      <RevisionNr Value="3"/>
+      <BuildNr Value="3"/>
+      <StringTable CompanyName="http://mohammadrezab.blogsky.com" FileDescription="Free video bitrate/file size calculator. available in both CLI and GUI versions." InternalName="BitHesab CLI" ProductName="BitHesab" ProductVersion="1.0.3.0"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
@@ -88,7 +88,7 @@
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <DestinationDirectory Value="$(ProjPath)\published\releases\1.0.2"/>
+      <DestinationDirectory Value="$(ProjPath)\published\releases\1.0.3"/>
     </PublishOptions>
     <RunParams>
       <local>
