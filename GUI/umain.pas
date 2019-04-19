@@ -2,7 +2,7 @@ unit uMain;
 { BitHesab: Free video bitrate/file size calculator. available in both CLI and
   GUI versions.
 
-  Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com
+  Copyright (C) 2019 Mohammadreza Bahrami m.audio91@gmail.com
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType;
+  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType {$ifdef darwin},Menus{$endif};
 
 type
 
@@ -34,6 +34,12 @@ type
   { TBH }
 
   TBH = class(TForm)
+    FileSizeBasedL: TLabel;
+    AppVer: TLabel;
+    MainContainer: TPanel;
+    HeaderLinks: TPanel;
+    HeaderLinksContainer: TPanel;
+    vBitBasedL: TLabel;
     vBitUnit: TComboBox;
     Sep4: TDividerBevel;
     Calc: TButton;
@@ -48,13 +54,12 @@ type
     OverheadUnitL: TLabel;
     Sep1: TLabel;
     Sep2: TLabel;
-    HeaderSupportTitleL: TLabel;
     Header: TPanel;
     HeaderTexts: TPanel;
     aBitContainer: TPanel;
     DuratonContainer: TPanel;
     OverheadContainer: TPanel;
-    TargetRadioContainer: TPanel;
+    TargetsContainer: TPanel;
     TargetValueContainer: TPanel;
     FileSizeValueContainer: TPanel;
     vBitValueContainer: TPanel;
@@ -75,12 +80,25 @@ type
     procedure vBitUnitChange(Sender: TObject);
     procedure CalcClick(Sender: TObject);
   private
+    {$ifdef darwin}
+    MainMenu: TMainMenu;
+    AppMenu: TMenuItem;
+    {$endif}
+    FAuthorUrl,FIssuesUrl,FLicenseUrl: TUrlLabelEx;
     FMode: TCalcMode;
     function DoCalc(Dur, AB, OH, FSUnit, FS, VBUnit, VB: Double;
       CalcMode: TCalcMode): Double;
   public
     FIsEnglish: Boolean;
   end;
+
+const
+  Issues = 'پشتیبانی و گزارش خطا';
+  IssuesUrl = 'https://github.com/m-audio91/BitHesab/issues';
+  Author = 'خانه';
+  AuthorUrl ='http://mohammadrezab.blogsky.com';
+  LicenseVer = 'GPLv3';
+  LicenseUrl = 'https://www.gnu.org/licenses/gpl-3.0.en.html';
 
 var
   BH: TBH;
@@ -92,44 +110,59 @@ implementation
 { TBH }
 
 procedure TBH.FormCreate(Sender: TObject);
-var
-  AUrl,AUrl2: TUrlLabel;
 begin
-  AUrl := TUrlLabel.Create(Self);
-  with AUrl do
+  {$ifdef darwin}
+    MainMenu := TMainMenu.Create(Self);
+    MainMenu.Parent := Self;
+    AppMenu := TMenuItem.Create(Self);
+    AppMenu.Caption := #$EF#$A3#$BF;
+    MainMenu.Items.Insert(0, AppMenu);
+  {$endif}
+  FAuthorUrl := TUrlLabelEx.Create(Self);
+  with FAuthorUrl do
   begin
-    Parent := HeaderTexts;
-    Caption := 'http://mohammadrezab.blogsky.com';
-    Font.Color := $0086C6E4;
-    Alignment := taRightJustify; 
-    Align := alTop;
-    Top := HeaderTexts.Height-10;
-  end;
-  AUrl2 := TUrlLabel.Create(Self);
-  with AUrl2 do
-  begin
-    Parent := HeaderTexts;
-    Caption := 'https://github.com/m-audio91/BitHesab/issues';
+    Parent := HeaderLinks;
+    Caption := Author;
+    URL := AuthorUrl;
     Font.Color := $0086C6E4;
     Alignment := taRightJustify;
-    Align := alTop;
-    Top := AUrl.Top+AUrl.Height;
+  end;
+  FIssuesUrl := TUrlLabelEx.Create(Self);
+  with FIssuesUrl do
+  begin
+    Parent := HeaderLinks;
+    Caption := Issues;
+    URL := IssuesUrl;
+    Font.Color := $0086C6E4;
+    Alignment := taRightJustify;
+  end;
+  FLicenseUrl := TUrlLabelEx.Create(Self);
+  with FLicenseUrl do
+  begin
+    Parent := Footer;
+    Caption := LicenseVer;
+    URL := LicenseUrl;
+    Font.Color := clHighlight;
   end;
   FMode := cmCalcvBit;
 end;
 
 procedure TBH.FormShow(Sender: TObject);
 begin
+  {$ifdef linux}
+  MainContainer.Color := clForm;
+  {$endif}
   if FIsEnglish then
   begin
     Calc.Caption := 'Calculate';
     DuratonContainer.Caption := 'Duration';
     aBitContainer.Caption := 'Audio Bitrates';
-    vBitBased.Caption := 'Video Bitrate';
+    vBitBasedL.Caption := 'Video Bitrate';
     OverheadContainer.Caption := 'Container Overhead';
-    FileSizeBased.Caption := 'File Size';
+    FileSizeBasedL.Caption := 'File Size';
     HeaderTitleL.Caption := 'BitHesab - Calculate bitrate and file size before conversion';
-    HeaderSupportTitleL.Caption := ':Update, Support and Issue Reporting';
+    FAuthorUrl.Caption := 'Home Page';
+    FIssuesUrl.Caption := 'Support and Issue Reporting';
   end;
 end;
 
