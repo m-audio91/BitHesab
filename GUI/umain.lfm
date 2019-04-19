@@ -10,7 +10,6 @@ object BH: TBH
   ClientHeight = 318
   ClientWidth = 551
   Constraints.MinHeight = 238
-  Constraints.MinWidth = 387
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -56,6 +55,8 @@ object BH: TBH
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
       end
       object HeaderLinksContainer: TPanel
         Left = 0
@@ -85,7 +86,7 @@ object BH: TBH
       Height = 60
       Top = 6
       Width = 48
-      Align = alRight
+      Align = alLeft
       BorderSpacing.Around = 6
       Center = True
       Picture.Data = {
@@ -139,6 +140,7 @@ object BH: TBH
     ClientHeight = 189
     ClientWidth = 551
     ParentBidiMode = False
+    ParentShowHint = False
     TabOrder = 2
     object DuratonContainer: TPanel
       Left = 6
@@ -502,8 +504,6 @@ object BH: TBH
     ChildSizing.ControlsPerLine = 5
     ClientHeight = 30
     ClientWidth = 539
-    Font.Color = clGrayText
-    ParentFont = False
     TabOrder = 0
     object Calc: TButton
       Left = 459
@@ -524,7 +524,9 @@ object BH: TBH
       Top = 7
       Width = 39
       Caption = 'v1.3.0'
+      Font.Color = clGrayText
       ParentColor = False
+      ParentFont = False
     end
   end
 end

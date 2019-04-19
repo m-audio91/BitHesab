@@ -85,20 +85,43 @@ type
     AppMenu: TMenuItem;
     {$endif}
     FAuthorUrl,FIssuesUrl,FLicenseUrl: TUrlLabelEx;
+    FLangUrl: TCustomUrlLabel;
+    FEnglishUI: Boolean;
     FMode: TCalcMode;
     function DoCalc(Dur, AB, OH, FSUnit, FS, VBUnit, VB: Double;
       CalcMode: TCalcMode): Double;
-  public
-    FIsEnglish: Boolean;
+    procedure LangUrlClick(Sender: TObject);
+    procedure ChangeLang;
+    procedure SetFormWidth;
+  published
+    property EnglishUI: Boolean read FEnglishUI write FEnglishUI;
   end;
 
-const
+resourcestring
   Issues = 'پشتیبانی و گزارش خطا';
   IssuesUrl = 'https://github.com/m-audio91/BitHesab/issues';
   Author = 'خانه';
   AuthorUrl ='http://mohammadrezab.blogsky.com';
   LicenseVer = 'GPLv3';
   LicenseUrl = 'https://www.gnu.org/licenses/gpl-3.0.en.html';
+  LEng = 'English';
+  LPer = 'فارسی';
+  engCalc = 'Calculate';
+  engDuratonContainer = 'Duration';
+  engaBitContainer = 'Audio Bitrate(s)';
+  engvBitBased = 'Video Bitrate';
+  engOverheadContainer = 'Container Overhead';
+  engFileSizeBased = 'File Size';
+  engHeaderTitle = 'BitHesab - Calculate bitrate and file size before conversion';
+  engAuthor = 'Home Page';
+  engIssues = 'Support and Issue Reporting';
+  perCalc = 'محاسبه کن';
+  perDuratonContainer = 'مدت زمان';
+  peraBitContainer = 'نرخ بیت صدا(ها)';
+  pervBitBased = 'نرخ بیت تصویر';
+  perOverheadContainer = 'میزان اضافه حجم حامل';
+  perFileSizeBased = 'حجم فایل خروجی';
+  perHeaderTitle = 'بیت حساب - محاسبه گر نرخ بیت و حجم فایل خروجی قبل از تبدیل';
 
 var
   BH: TBH;
@@ -123,6 +146,7 @@ begin
   begin
     Parent := HeaderLinks;
     Caption := Author;
+    Hint := Author;
     URL := AuthorUrl;
     Font.Color := $0086C6E4;
     Alignment := taRightJustify;
@@ -132,6 +156,7 @@ begin
   begin
     Parent := HeaderLinks;
     Caption := Issues;
+    Hint := Issues;
     URL := IssuesUrl;
     Font.Color := $0086C6E4;
     Alignment := taRightJustify;
@@ -142,28 +167,31 @@ begin
     Parent := Footer;
     Caption := LicenseVer;
     URL := LicenseUrl;
-    Font.Color := clHighlight;
+    HighlightColor := $0086C6E4;
   end;
+  FLangUrl := TCustomUrlLabel.Create(Self);
+  with FLangUrl do
+  begin
+    Parent := Footer;
+    Caption := LEng;
+    HighlightColor := $0086C6E4;
+    OnClick := @LangUrlClick;
+  end;
+  FEnglishUI := False;
   FMode := cmCalcvBit;
 end;
 
 procedure TBH.FormShow(Sender: TObject);
 begin
+  SetFormWidth;
   {$ifdef linux}
   MainContainer.Color := clForm;
   {$endif}
-  if FIsEnglish then
-  begin
-    Calc.Caption := 'Calculate';
-    DuratonContainer.Caption := 'Duration';
-    aBitContainer.Caption := 'Audio Bitrates';
-    vBitBasedL.Caption := 'Video Bitrate';
-    OverheadContainer.Caption := 'Container Overhead';
-    FileSizeBasedL.Caption := 'File Size';
-    HeaderTitleL.Caption := 'BitHesab - Calculate bitrate and file size before conversion';
-    FAuthorUrl.Caption := 'Home Page';
-    FIssuesUrl.Caption := 'Support and Issue Reporting';
-  end;
+end;
+
+procedure TBH.SetFormWidth;
+begin
+  Constraints.MinWidth := Round(HeaderTitleL.Width+HeaderIcon.Width*1.5);
 end;
 
 procedure TBH.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -285,6 +313,43 @@ begin
   cmCalcSize: FileSize.Value := Val;
   cmCalcvBit: vBit.Value := Round(Val);
   end;
+end;
+
+procedure TBH.LangUrlClick(Sender: TObject);
+begin
+  FEnglishUI := False = FEnglishUI;
+  ChangeLang;
+end;
+
+procedure TBH.ChangeLang;
+begin
+  if EnglishUI then
+  begin
+    Calc.Caption := engCalc;
+    DuratonContainer.Caption := engDuratonContainer;
+    aBitContainer.Caption := engaBitContainer;
+    vBitBasedL.Caption := engvBitBased;
+    OverheadContainer.Caption := engOverheadContainer;
+    FileSizeBasedL.Caption := engFileSizeBased;
+    HeaderTitleL.Caption := engHeaderTitle;
+    FAuthorUrl.Caption := engAuthor;
+    FIssuesUrl.Caption := engIssues;
+    FLangUrl.Caption := LPer;
+  end
+  else
+  begin
+    Calc.Caption := perCalc;
+    DuratonContainer.Caption := perDuratonContainer;
+    aBitContainer.Caption := peraBitContainer;
+    vBitBasedL.Caption := pervBitBased;
+    OverheadContainer.Caption := perOverheadContainer;
+    FileSizeBasedL.Caption := perFileSizeBased;
+    HeaderTitleL.Caption := perHeaderTitle;
+    FAuthorUrl.Caption := Author;
+    FIssuesUrl.Caption := Issues;
+    FLangUrl.Caption := LEng;
+  end;
+  SetFormWidth;
 end;
 
 end.
