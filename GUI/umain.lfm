@@ -166,6 +166,7 @@ object BH: TBH
         Align = alLeft
         Alignment = taCenter
         MaxValue = 59
+        OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
       end
@@ -189,6 +190,7 @@ object BH: TBH
         Align = alLeft
         Alignment = taCenter
         MaxValue = 59
+        OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 1
         Value = 45
@@ -213,6 +215,7 @@ object BH: TBH
         Align = alLeft
         Alignment = taCenter
         MaxValue = 59
+        OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 2
       end
@@ -241,6 +244,7 @@ object BH: TBH
         Align = alLeft
         Alignment = taCenter
         MaxValue = 20000
+        OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
         Value = 96
@@ -294,6 +298,7 @@ object BH: TBH
         Align = alLeft
         Alignment = taCenter
         Increment = 0.2
+        OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
       end
@@ -332,6 +337,7 @@ object BH: TBH
         BidiMode = bdRightToLeft
         Checked = True
         OnChange = FileSizeBasedChange
+        OnExit = CalcClick
         ParentBidiMode = False
         TabOrder = 0
         TabStop = True
@@ -354,6 +360,7 @@ object BH: TBH
         Align = alRight
         BidiMode = bdRightToLeft
         OnChange = vBitBasedChange
+        OnExit = CalcClick
         ParentBidiMode = False
         TabOrder = 1
       end
@@ -397,6 +404,7 @@ object BH: TBH
             'GB'
           )
           OnChange = FileSizeUnitChange
+          OnExit = CalcClick
           Style = csDropDownList
           TabOrder = 0
           Text = 'MB'
@@ -412,6 +420,7 @@ object BH: TBH
           Increment = 0.2
           MaxValue = 1048576
           MinValue = 0.001
+          OnExit = CalcClick
           OnKeyDown = FormKeyDown
           TabOrder = 1
           Value = 230
@@ -442,6 +451,7 @@ object BH: TBH
             'Mb/s'
           )
           OnChange = vBitUnitChange
+          OnExit = CalcClick
           Style = csDropDownList
           TabOrder = 0
           Text = 'Kb/s'
@@ -455,6 +465,7 @@ object BH: TBH
           BorderSpacing.Top = 2
           MaxValue = 135606
           MinValue = 1
+          OnExit = CalcClick
           OnKeyDown = FormKeyDown
           TabOrder = 1
           Value = 619
