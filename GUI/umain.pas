@@ -1,4 +1,5 @@
 unit uMain;
+
 { BitHesab: Free video bitrate/file size calculator. available in both CLI and
   GUI versions.
 
@@ -23,7 +24,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType {$ifdef darwin},Menus{$endif};
+  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType, IniPropStorage
+  {$ifdef darwin},Menus{$endif};
 
 type
 
@@ -36,6 +38,7 @@ type
   TBH = class(TForm)
     FileSizeBasedL: TLabel;
     AppVer: TLabel;
+    IniProps: TIniPropStorage;
     MainContainer: TPanel;
     HeaderLinks: TPanel;
     HeaderLinksContainer: TPanel;
@@ -75,6 +78,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FileSizeBasedChange(Sender: TObject);
+    procedure IniPropsRestoringProperties(Sender: TObject);
     procedure vBitBasedChange(Sender: TObject);
     procedure FileSizeUnitChange(Sender: TObject);
     procedure vBitUnitChange(Sender: TObject);
@@ -177,13 +181,13 @@ begin
     HighlightColor := $0086C6E4;
     OnClick := @LangUrlClick;
   end;
-  FEnglishUI := False;
+  FEnglishUI := True;
   FMode := cmCalcvBit;
 end;
 
 procedure TBH.FormShow(Sender: TObject);
 begin
-  SetFormWidth;
+  ChangeLang;
   {$ifdef linux}
   MainContainer.Color := clForm;
   {$endif}
@@ -209,6 +213,11 @@ begin
       FMode := cmCalcvBit;
   end;
   CalcClick(Calc);
+end;
+
+procedure TBH.IniPropsRestoringProperties(Sender: TObject);
+begin
+  SessionProperties := SessionProperties+';EnglishUI';
 end;
 
 procedure TBH.vBitBasedChange(Sender: TObject);
