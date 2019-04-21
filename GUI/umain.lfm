@@ -2,29 +2,29 @@ object BH: TBH
   Left = 250
   Height = 318
   Top = 211
-  Width = 491
+  Width = 534
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'BitHesab'
   ClientHeight = 318
-  ClientWidth = 491
+  ClientWidth = 534
   Constraints.MinHeight = 238
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  SessionProperties = 'aBit.Value;DurH.Value;DurM.Value;DurS.Value;FileSizeBased.Checked;FileSizeUnit.ItemIndex;FileSize.Value;Overhead.Value;vBitBased.Checked;vBitUnit.ItemIndex;vBit.Value;Top;Left'
+  SessionProperties = 'Left;Top;DurH.Value;DurM.Value;DurS.Value;aBit.Value;Overhead.Value;FileSizeBased.Checked;FileSizeUnit.ItemIndex;FileSize.MaxValue;FileSize.Value;vBitBased.Checked;vBitUnit.ItemIndex;vBit.Increment;vBit.MaxValue;vBit.Value'
   object Header: TPanel
     Left = 0
     Height = 72
     Top = 0
-    Width = 491
+    Width = 534
     Align = alTop
     Alignment = taLeftJustify
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 72
-    ClientWidth = 491
+    ClientWidth = 534
     Color = 4342338
     ParentColor = False
     TabOrder = 1
@@ -32,7 +32,7 @@ object BH: TBH
       Left = 0
       Height = 60
       Top = 6
-      Width = 485
+      Width = 528
       Align = alRight
       AutoSize = True
       BorderSpacing.Top = 6
@@ -43,14 +43,14 @@ object BH: TBH
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 60
-      ClientWidth = 485
+      ClientWidth = 528
       TabOrder = 0
       object HeaderTitleL: TLabel
         Left = 0
         Height = 17
         Top = 0
-        Width = 485
-        Caption = 'بیت حساب - محاسبه گر نرخ بیت و حجم فایل خروجی قبل از تبدیل'
+        Width = 528
+        Caption = 'بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل'
         Font.Color = clWindow
         Font.Style = [fsBold]
         ParentColor = False
@@ -62,13 +62,13 @@ object BH: TBH
         Left = 0
         Height = 1
         Top = 17
-        Width = 485
+        Width = 528
         BevelOuter = bvNone
         ClientHeight = 1
-        ClientWidth = 485
+        ClientWidth = 528
         TabOrder = 0
         object HeaderLinks: TPanel
-          Left = 484
+          Left = 527
           Height = 1
           Top = 0
           Width = 1
@@ -129,7 +129,7 @@ object BH: TBH
     Left = 0
     Height = 189
     Top = 72
-    Width = 491
+    Width = 534
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -138,7 +138,7 @@ object BH: TBH
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 189
-    ClientWidth = 491
+    ClientWidth = 534
     ParentBidiMode = False
     ParentShowHint = False
     TabOrder = 2
@@ -146,7 +146,7 @@ object BH: TBH
       Left = 6
       Height = 27
       Top = 8
-      Width = 479
+      Width = 522
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -156,7 +156,7 @@ object BH: TBH
       BevelOuter = bvNone
       Caption = 'مدت زمان'
       ClientHeight = 27
-      ClientWidth = 479
+      ClientWidth = 522
       TabOrder = 0
       object DurH: TSpinEdit
         Left = 0
@@ -165,7 +165,7 @@ object BH: TBH
         Width = 80
         Align = alLeft
         Alignment = taCenter
-        MaxValue = 59
+        MaxValue = 1000
         OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
@@ -224,7 +224,7 @@ object BH: TBH
       Left = 6
       Height = 27
       Top = 39
-      Width = 479
+      Width = 522
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -234,7 +234,7 @@ object BH: TBH
       BevelOuter = bvNone
       Caption = 'نرخ بیت صدا(ها)'
       ClientHeight = 27
-      ClientWidth = 479
+      ClientWidth = 522
       TabOrder = 1
       object aBit: TSpinEdit
         Left = 0
@@ -243,7 +243,7 @@ object BH: TBH
         Width = 110
         Align = alLeft
         Alignment = taCenter
-        MaxValue = 20000
+        MaxValue = 100000
         OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
@@ -266,7 +266,7 @@ object BH: TBH
       Left = 6
       Height = 27
       Top = 70
-      Width = 479
+      Width = 522
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -276,7 +276,7 @@ object BH: TBH
       BevelOuter = bvNone
       Caption = 'میزان اضافه حجم حامل'
       ClientHeight = 27
-      ClientWidth = 479
+      ClientWidth = 522
       TabOrder = 2
       object OverheadUnitL: TLabel
         Left = 112
@@ -307,7 +307,7 @@ object BH: TBH
       Left = 6
       Height = 24
       Top = 101
-      Width = 479
+      Width = 522
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -316,7 +316,7 @@ object BH: TBH
       BorderSpacing.Bottom = 2
       BevelOuter = bvNone
       ClientHeight = 24
-      ClientWidth = 479
+      ClientWidth = 522
       TabOrder = 3
       object FileSizeBasedL: TLabel
         Left = 0
@@ -343,7 +343,7 @@ object BH: TBH
         TabStop = True
       end
       object vBitBasedL: TLabel
-        Left = 365
+        Left = 408
         Height = 24
         Top = 0
         Width = 90
@@ -353,7 +353,7 @@ object BH: TBH
         ParentColor = False
       end
       object vBitBased: TRadioButton
-        Left = 455
+        Left = 498
         Height = 24
         Top = 0
         Width = 24
@@ -369,7 +369,7 @@ object BH: TBH
       Left = 6
       Height = 56
       Top = 129
-      Width = 479
+      Width = 522
       Alignment = taLeftJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -378,25 +378,28 @@ object BH: TBH
       BorderSpacing.Bottom = 4
       BevelOuter = bvNone
       ClientHeight = 56
-      ClientWidth = 479
+      ClientWidth = 522
       TabOrder = 4
       object FileSizeValueContainer: TPanel
         Left = 0
         Height = 56
         Top = 0
-        Width = 110
+        Width = 150
         Align = alLeft
+        AutoSize = True
         BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
         ClientHeight = 56
-        ClientWidth = 110
+        ClientWidth = 150
+        Constraints.MinWidth = 150
         TabOrder = 0
         object FileSizeUnit: TComboBox
           Left = 0
           Height = 27
           Top = 0
-          Width = 100
+          Width = 150
           ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
@@ -413,12 +416,12 @@ object BH: TBH
           Left = 0
           Height = 27
           Top = 29
-          Width = 100
+          Width = 150
           Alignment = taCenter
           BorderSpacing.Top = 2
           DecimalPlaces = 3
           Increment = 0.2
-          MaxValue = 1048576
+          MaxValue = 104857600
           MinValue = 0.001
           OnExit = CalcClick
           OnKeyDown = FormKeyDown
@@ -427,23 +430,26 @@ object BH: TBH
         end
       end
       object vBitValueContainer: TPanel
-        Left = 369
+        Left = 372
         Height = 56
         Top = 0
-        Width = 110
+        Width = 150
         Align = alRight
+        AutoSize = True
         BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
         ClientHeight = 56
-        ClientWidth = 110
+        ClientWidth = 150
+        Constraints.MinWidth = 150
         Enabled = False
         TabOrder = 1
         object vBitUnit: TComboBox
           Left = 0
           Height = 27
           Top = 0
-          Width = 100
+          Width = 150
           ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
@@ -456,15 +462,16 @@ object BH: TBH
           TabOrder = 0
           Text = 'Kb/s'
         end
-        object vBit: TSpinEdit
+        object vBit: TFloatSpinEdit
           Left = 0
           Height = 27
           Top = 29
-          Width = 100
+          Width = 150
           Alignment = taCenter
           BorderSpacing.Top = 2
-          MaxValue = 135606
-          MinValue = 1
+          DecimalPlaces = 3
+          MaxValue = 13560600
+          MinValue = 0.001
           OnExit = CalcClick
           OnKeyDown = FormKeyDown
           TabOrder = 1
@@ -477,7 +484,7 @@ object BH: TBH
         AnchorSideTop.Control = TargetValueContainer
         AnchorSideBottom.Control = TargetValueContainer
         AnchorSideBottom.Side = asrBottom
-        Left = 231
+        Left = 253
         Height = 56
         Top = 0
         Width = 17
@@ -493,14 +500,14 @@ object BH: TBH
     Left = 0
     Height = 17
     Top = 261
-    Width = 491
+    Width = 534
     Align = alTop
   end
   object Footer: TPanel
     Left = 6
     Height = 30
     Top = 280
-    Width = 479
+    Width = 522
     Align = alTop
     Alignment = taLeftJustify
     AutoSize = True
@@ -514,10 +521,10 @@ object BH: TBH
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 5
     ClientHeight = 30
-    ClientWidth = 479
+    ClientWidth = 522
     TabOrder = 0
     object Calc: TButton
-      Left = 399
+      Left = 442
       Height = 30
       Top = 0
       Width = 80

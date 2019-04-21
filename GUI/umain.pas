@@ -38,6 +38,7 @@ type
   TBH = class(TForm)
     FileSizeBasedL: TLabel;
     AppVer: TLabel;
+    vBit: TFloatSpinEdit;
     IniProps: TIniPropStorage;
     MainContainer: TPanel;
     HeaderLinks: TPanel;
@@ -70,7 +71,6 @@ type
     FileSizeBased: TRadioButton;
     vBitBased: TRadioButton;
     aBit: TSpinEdit;
-    vBit: TSpinEdit;
     DurH: TSpinEdit;
     DurM: TSpinEdit;
     DurS: TSpinEdit;
@@ -116,7 +116,7 @@ resourcestring
   engvBitBased = 'Video Bitrate';
   engOverheadContainer = 'Container Overhead';
   engFileSizeBased = 'File Size';
-  engHeaderTitle = 'BitHesab - Calculate bitrate and file size before conversion';
+  engHeaderTitle = 'BitHesab - Calculate video bitrate and file size before conversion';
   engAuthor = 'Home Page';
   engIssues = 'Support and Issue Reporting';
   perCalc = 'محاسبه کن';
@@ -125,7 +125,7 @@ resourcestring
   pervBitBased = 'نرخ بیت تصویر';
   perOverheadContainer = 'میزان اضافه حجم حامل';
   perFileSizeBased = 'حجم فایل خروجی';
-  perHeaderTitle = 'بیت حساب - محاسبه گر نرخ بیت و حجم فایل خروجی قبل از تبدیل';
+  perHeaderTitle = 'بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل';
 
 var
   BH: TBH;
@@ -233,17 +233,17 @@ end;
 
 procedure TBH.FileSizeUnitChange(Sender: TObject);
 const
-  MAXVAL = 1048576;
+  MAXVAL = 104857600;
 begin
+  FileSize.MaxValue := 0;
   case FileSizeUnit.ItemIndex of
   0: begin
+    FileSize.Value := FileSize.Value * 1024; 
     FileSize.MaxValue := MAXVAL;
-    FileSize.Value := FileSize.Value * 1024;
     end;
   1: begin
+    FileSize.Value := FileSize.Value / 1024;
     FileSize.MaxValue := MAXVAL div 1024;
-    if FileSize.Value > 2 then
-      FileSize.Value := FileSize.Value / 1024;
     end;
   end;
   CalcClick(Calc);
@@ -251,16 +251,19 @@ end;
 
 procedure TBH.vBitUnitChange(Sender: TObject);
 const
-  MAXVAL = 135606;
+  MAXVAL = 13560600;
 begin
+  vBit.MaxValue := 0;
   case vBitUnit.ItemIndex of
   0: begin
+    vBit.Value := Trunc(vBit.Value * 1000);
     vBit.MaxValue := MAXVAL;
-    vBit.Value := vBit.Value * 1000;
+    vBit.Increment := 1;
     end;
   1: begin
-    vBit.MaxValue := MAXVAL / 1000;
     vBit.Value := vBit.Value / 1000;
+    vBit.MaxValue := MAXVAL / 1000;
+    vBit.Increment := 0.1;
     end;
   end;
   CalcClick(Calc);
@@ -320,7 +323,12 @@ begin
   );
   case FMode of
   cmCalcSize: FileSize.Value := Val;
-  cmCalcvBit: vBit.Value := Round(Val);
+  cmCalcvBit: begin
+    if vBitUnit.ItemIndex=1 then
+      vBit.Value := Val
+    else
+      vBit.Value := Round(Val);
+    end;
   end;
 end;
 
