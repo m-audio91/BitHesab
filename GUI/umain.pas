@@ -1,5 +1,4 @@
 unit uMain;
-
 { BitHesab: Free video bitrate/file size calculator. available in both CLI and
   GUI versions.
 
@@ -112,7 +111,7 @@ resourcestring
   LPer = 'فارسی';
   engCalc = 'Calculate';
   engDuratonContainer = 'Duration';
-  engaBitContainer = 'Audio Bitrate(s)';
+  engaBitContainer = 'Audio Bitrate';
   engvBitBased = 'Video Bitrate';
   engOverheadContainer = 'Container Overhead';
   engFileSizeBased = 'File Size';
