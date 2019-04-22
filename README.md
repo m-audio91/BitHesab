@@ -1,13 +1,11 @@
 # BitHesab
 ![Image of BitHesab](https://github.com/m-audio91/BitHesab/raw/master/GUI/extra/icon/80.png)  
-v1.2.0 GUI  
+v1.3.0 GUI  
 v1.0.3 CLI
 
 Free video bitrate/file size calculator. available in both CLI and GUI versions.
 
-To run the GUI with English captions run the program with `-eng` switch. or add it to it's shortcut. see [extra/screenshots](https://github.com/m-audio91/BitHesab/tree/master/GUI/extra/screenshots).
-
-Copyright (C) 2017 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
+Copyright (C) 2019 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
 ### compilation guide:  
 1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) repository.
