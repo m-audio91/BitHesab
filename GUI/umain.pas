@@ -190,6 +190,7 @@ begin
   {$ifdef linux}
   MainContainer.Color := clForm;
   {$endif}
+  CalcClick(Calc);
 end;
 
 procedure TBH.SetFormWidth;
