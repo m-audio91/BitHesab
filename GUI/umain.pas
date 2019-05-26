@@ -23,8 +23,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType, IniPropStorage
-  {$ifdef darwin},Menus{$endif};
+  ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType, IniPropStorage, Menus,
+  CommonGUIUtils;
 
 type
 
@@ -35,8 +35,11 @@ type
   { TBH }
 
   TBH = class(TForm)
+    FileSizeMenu: TPopupMenu;
+    VBitrateMenu: TPopupMenu;
     FileSizeBasedL: TLabel;
     AppVer: TLabel;
+    ABitrateMenu: TPopupMenu;
     vBit: TFloatSpinEdit;
     IniProps: TIniPropStorage;
     MainContainer: TPanel;
@@ -78,6 +81,9 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FileSizeBasedChange(Sender: TObject);
     procedure IniPropsRestoringProperties(Sender: TObject);
+    procedure ABitrateMIClick(Sender: TObject);
+    procedure VBitrateMIClick(Sender: TObject);
+    procedure FileSizeMIClick(Sender: TObject);
     procedure vBitBasedChange(Sender: TObject);
     procedure FileSizeUnitChange(Sender: TObject);
     procedure vBitUnitChange(Sender: TObject);
@@ -96,6 +102,7 @@ type
     procedure LangUrlClick(Sender: TObject);
     procedure ChangeLang;
     procedure SetFormWidth;
+    procedure SetPopupMenuValues;
   published
     property EnglishUI: Boolean read FEnglishUI write FEnglishUI;
   end;
@@ -125,6 +132,14 @@ resourcestring
   perOverheadContainer = 'میزان اضافه حجم حامل';
   perFileSizeBased = 'حجم فایل خروجی';
   perHeaderTitle = 'بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل';
+
+const
+  ABitrates: array [0..11] of String = ('48','56','64','96','128','256'
+    ,'320','448','640','768','1411','1510');
+  VBitratesKb: array [0..8] of String = ('100','200','300','400','500','600'
+    ,'700','800' ,'900');
+  VBitratesMb: array [0..8] of String = ('1','2','3','5','10','15','20'
+    ,'30','40');
 
 var
   BH: TBH;
@@ -190,6 +205,7 @@ begin
   {$ifdef linux}
   MainContainer.Color := clForm;
   {$endif}
+  SetPopupMenuValues;
   CalcClick(Calc);
 end;
 
@@ -198,10 +214,38 @@ begin
   Constraints.MinWidth := Round(HeaderTitleL.Width+HeaderIcon.Width*1.5);
 end;
 
+procedure TBH.SetPopupMenuValues;
+begin
+  SetMenuValues(ABitrateMenu,ABitrates,@ABitrateMIClick);
+  case vBitUnit.ItemIndex of
+  0: SetMenuValues(VBitrateMenu,VBitratesKb,@VBitrateMIClick);
+  1: SetMenuValues(VBitrateMenu,VBitratesMb,@VBitrateMIClick);
+  end;
+  case FileSizeUnit.ItemIndex of
+  0: SetMenuValues(FileSizeMenu,VBitratesKb,@FileSizeMIClick);
+  1: SetMenuValues(FileSizeMenu,VBitratesMb,@FileSizeMIClick);
+  end;
+end;
+
 procedure TBH.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if (Key = VK_RETURN) then
     CalcClick(Calc);
+end; 
+
+procedure TBH.ABitrateMIClick(Sender: TObject);
+begin
+  ABit.Value := String((Sender as TMenuItem).Caption).ToInteger;
+end;
+
+procedure TBH.VBitrateMIClick(Sender: TObject);
+begin
+  VBit.Value := String((Sender as TMenuItem).Caption).ToInteger;
+end;
+
+procedure TBH.FileSizeMIClick(Sender: TObject);
+begin
+  FileSize.Value := String((Sender as TMenuItem).Caption).ToInteger;
 end;
 
 procedure TBH.FileSizeBasedChange(Sender: TObject);
@@ -246,6 +290,7 @@ begin
     FileSize.MaxValue := MAXVAL div 1024;
     end;
   end;
+  SetPopupMenuValues;
   CalcClick(Calc);
 end;
 
@@ -266,6 +311,7 @@ begin
     vBit.Increment := 0.1;
     end;
   end;
+  SetPopupMenuValues;
   CalcClick(Calc);
 end;
 
