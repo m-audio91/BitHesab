@@ -1,14 +1,14 @@
 object BH: TBH
   Left = 250
-  Height = 318
+  Height = 327
   Top = 211
-  Width = 534
+  Width = 538
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'BitHesab'
-  ClientHeight = 318
-  ClientWidth = 534
+  ClientHeight = 327
+  ClientWidth = 538
   Constraints.MinHeight = 238
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
@@ -18,13 +18,13 @@ object BH: TBH
     Left = 0
     Height = 72
     Top = 0
-    Width = 534
+    Width = 538
     Align = alTop
     Alignment = taLeftJustify
     AutoSize = True
     BevelOuter = bvNone
     ClientHeight = 72
-    ClientWidth = 534
+    ClientWidth = 538
     Color = 4342338
     ParentColor = False
     TabOrder = 1
@@ -32,7 +32,7 @@ object BH: TBH
       Left = 0
       Height = 60
       Top = 6
-      Width = 528
+      Width = 532
       Align = alRight
       AutoSize = True
       BorderSpacing.Top = 6
@@ -43,15 +43,15 @@ object BH: TBH
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 60
-      ClientWidth = 528
+      ClientWidth = 532
       TabOrder = 0
       object HeaderTitleL: TLabel
         Left = 0
         Height = 17
         Top = 0
-        Width = 528
+        Width = 532
         Caption = 'بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل'
-        Font.Color = clWindow
+        Font.Color = clWhite
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
@@ -62,13 +62,13 @@ object BH: TBH
         Left = 0
         Height = 1
         Top = 17
-        Width = 528
+        Width = 532
         BevelOuter = bvNone
         ClientHeight = 1
-        ClientWidth = 528
+        ClientWidth = 532
         TabOrder = 0
         object HeaderLinks: TPanel
-          Left = 527
+          Left = 531
           Height = 1
           Top = 0
           Width = 1
@@ -127,9 +127,9 @@ object BH: TBH
   end
   object MainContainer: TPanel
     Left = 0
-    Height = 189
+    Height = 196
     Top = 72
-    Width = 534
+    Width = 538
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
@@ -137,16 +137,16 @@ object BH: TBH
     ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 189
-    ClientWidth = 534
+    ClientHeight = 196
+    ClientWidth = 538
     ParentBidiMode = False
     ParentShowHint = False
     TabOrder = 2
     object DuratonContainer: TPanel
       Left = 6
-      Height = 27
+      Height = 29
       Top = 8
-      Width = 522
+      Width = 526
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -155,12 +155,12 @@ object BH: TBH
       BorderSpacing.Bottom = 2
       BevelOuter = bvNone
       Caption = 'مدت زمان'
-      ClientHeight = 27
-      ClientWidth = 522
+      ClientHeight = 29
+      ClientWidth = 526
       TabOrder = 0
       object DurH: TSpinEdit
         Left = 0
-        Height = 27
+        Height = 29
         Top = 0
         Width = 80
         Align = alLeft
@@ -172,7 +172,7 @@ object BH: TBH
       end
       object Sep1: TLabel
         Left = 82
-        Height = 27
+        Height = 29
         Top = 0
         Width = 4
         Align = alLeft
@@ -184,7 +184,7 @@ object BH: TBH
       end
       object DurM: TSpinEdit
         Left = 88
-        Height = 27
+        Height = 29
         Top = 0
         Width = 80
         Align = alLeft
@@ -197,7 +197,7 @@ object BH: TBH
       end
       object Sep2: TLabel
         Left = 170
-        Height = 27
+        Height = 29
         Top = 0
         Width = 4
         Align = alLeft
@@ -209,7 +209,7 @@ object BH: TBH
       end
       object DurS: TSpinEdit
         Left = 176
-        Height = 27
+        Height = 29
         Top = 0
         Width = 80
         Align = alLeft
@@ -222,9 +222,9 @@ object BH: TBH
     end
     object aBitContainer: TPanel
       Left = 6
-      Height = 27
-      Top = 39
-      Width = 522
+      Height = 29
+      Top = 41
+      Width = 526
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -233,12 +233,12 @@ object BH: TBH
       BorderSpacing.Bottom = 2
       BevelOuter = bvNone
       Caption = 'نرخ بیت صدا(ها)'
-      ClientHeight = 27
-      ClientWidth = 522
+      ClientHeight = 29
+      ClientWidth = 526
       TabOrder = 1
       object aBit: TSpinEdit
         Left = 0
-        Height = 27
+        Height = 29
         Top = 0
         Width = 110
         Align = alLeft
@@ -246,12 +246,13 @@ object BH: TBH
         MaxValue = 100000
         OnExit = CalcClick
         OnKeyDown = FormKeyDown
+        PopupMenu = ABitrateMenu
         TabOrder = 0
         Value = 96
       end
       object aBitUnitL: TLabel
         Left = 112
-        Height = 27
+        Height = 29
         Top = 0
         Width = 31
         Align = alLeft
@@ -264,9 +265,9 @@ object BH: TBH
     end
     object OverheadContainer: TPanel
       Left = 6
-      Height = 27
-      Top = 70
-      Width = 522
+      Height = 29
+      Top = 74
+      Width = 526
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -275,12 +276,12 @@ object BH: TBH
       BorderSpacing.Bottom = 2
       BevelOuter = bvNone
       Caption = 'میزان اضافه حجم حامل'
-      ClientHeight = 27
-      ClientWidth = 522
+      ClientHeight = 29
+      ClientWidth = 526
       TabOrder = 2
       object OverheadUnitL: TLabel
         Left = 112
-        Height = 27
+        Height = 29
         Top = 0
         Width = 13
         Align = alLeft
@@ -292,7 +293,7 @@ object BH: TBH
       end
       object Overhead: TFloatSpinEdit
         Left = 0
-        Height = 27
+        Height = 29
         Top = 0
         Width = 110
         Align = alLeft
@@ -305,9 +306,9 @@ object BH: TBH
     end
     object TargetsContainer: TPanel
       Left = 6
-      Height = 24
-      Top = 101
-      Width = 522
+      Height = 23
+      Top = 107
+      Width = 526
       Alignment = taRightJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -315,24 +316,24 @@ object BH: TBH
       BorderSpacing.Right = 6
       BorderSpacing.Bottom = 2
       BevelOuter = bvNone
-      ClientHeight = 24
-      ClientWidth = 522
+      ClientHeight = 23
+      ClientWidth = 526
       TabOrder = 3
       object FileSizeBasedL: TLabel
         Left = 0
-        Height = 24
+        Height = 23
         Top = 0
-        Width = 109
+        Width = 112
         Align = alLeft
         Caption = 'حجم فایل خروجی'
         Layout = tlCenter
         ParentColor = False
       end
       object FileSizeBased: TRadioButton
-        Left = 109
-        Height = 24
+        Left = 112
+        Height = 23
         Top = 0
-        Width = 24
+        Width = 23
         Align = alLeft
         BidiMode = bdRightToLeft
         Checked = True
@@ -343,20 +344,20 @@ object BH: TBH
         TabStop = True
       end
       object vBitBasedL: TLabel
-        Left = 408
-        Height = 24
+        Left = 410
+        Height = 23
         Top = 0
-        Width = 90
+        Width = 93
         Align = alRight
         Caption = 'نرخ بیت تصویر'
         Layout = tlCenter
         ParentColor = False
       end
       object vBitBased: TRadioButton
-        Left = 498
-        Height = 24
+        Left = 503
+        Height = 23
         Top = 0
-        Width = 24
+        Width = 23
         Align = alRight
         BidiMode = bdRightToLeft
         OnChange = vBitBasedChange
@@ -367,9 +368,9 @@ object BH: TBH
     end
     object TargetValueContainer: TPanel
       Left = 6
-      Height = 56
-      Top = 129
-      Width = 522
+      Height = 58
+      Top = 134
+      Width = 526
       Alignment = taLeftJustify
       AutoSize = True
       BorderSpacing.Left = 6
@@ -377,12 +378,12 @@ object BH: TBH
       BorderSpacing.Right = 6
       BorderSpacing.Bottom = 4
       BevelOuter = bvNone
-      ClientHeight = 56
-      ClientWidth = 522
+      ClientHeight = 58
+      ClientWidth = 526
       TabOrder = 4
       object FileSizeValueContainer: TPanel
         Left = 0
-        Height = 56
+        Height = 58
         Top = 0
         Width = 150
         Align = alLeft
@@ -391,7 +392,7 @@ object BH: TBH
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 56
+        ClientHeight = 58
         ClientWidth = 150
         Constraints.MinWidth = 150
         TabOrder = 0
@@ -414,7 +415,7 @@ object BH: TBH
         end
         object FileSize: TFloatSpinEdit
           Left = 0
-          Height = 27
+          Height = 29
           Top = 29
           Width = 150
           Alignment = taCenter
@@ -425,13 +426,14 @@ object BH: TBH
           MinValue = 0.001
           OnExit = CalcClick
           OnKeyDown = FormKeyDown
+          PopupMenu = FileSizeMenu
           TabOrder = 1
           Value = 230
         end
       end
       object vBitValueContainer: TPanel
-        Left = 372
-        Height = 56
+        Left = 376
+        Height = 58
         Top = 0
         Width = 150
         Align = alRight
@@ -440,7 +442,7 @@ object BH: TBH
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 56
+        ClientHeight = 58
         ClientWidth = 150
         Constraints.MinWidth = 150
         Enabled = False
@@ -464,7 +466,7 @@ object BH: TBH
         end
         object vBit: TFloatSpinEdit
           Left = 0
-          Height = 27
+          Height = 29
           Top = 29
           Width = 150
           Alignment = taCenter
@@ -474,6 +476,7 @@ object BH: TBH
           MinValue = 0.001
           OnExit = CalcClick
           OnKeyDown = FormKeyDown
+          PopupMenu = VBitrateMenu
           TabOrder = 1
           Value = 619
         end
@@ -484,8 +487,8 @@ object BH: TBH
         AnchorSideTop.Control = TargetValueContainer
         AnchorSideBottom.Control = TargetValueContainer
         AnchorSideBottom.Side = asrBottom
-        Left = 253
-        Height = 56
+        Left = 255
+        Height = 58
         Top = 0
         Width = 17
         Align = alCustom
@@ -499,15 +502,15 @@ object BH: TBH
   object Sep4: TDividerBevel
     Left = 0
     Height = 17
-    Top = 261
-    Width = 534
+    Top = 268
+    Width = 538
     Align = alTop
   end
   object Footer: TPanel
     Left = 6
-    Height = 30
-    Top = 280
-    Width = 522
+    Height = 32
+    Top = 287
+    Width = 526
     Align = alTop
     Alignment = taLeftJustify
     AutoSize = True
@@ -520,14 +523,14 @@ object BH: TBH
     ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 5
-    ClientHeight = 30
-    ClientWidth = 522
+    ClientHeight = 32
+    ClientWidth = 526
     TabOrder = 0
     object Calc: TButton
-      Left = 442
-      Height = 30
+      Left = 440
+      Height = 32
       Top = 0
-      Width = 80
+      Width = 86
       Align = alRight
       AutoSize = True
       Caption = 'محاسبه کن'
@@ -539,8 +542,8 @@ object BH: TBH
     object AppVer: TLabel
       Left = 0
       Height = 17
-      Top = 7
-      Width = 39
+      Top = 8
+      Width = 40
       Caption = 'v1.3.0'
       Font.Color = clGrayText
       ParentColor = False
@@ -552,5 +555,17 @@ object BH: TBH
     OnRestoringProperties = IniPropsRestoringProperties
     Left = 16
     Top = 248
+  end
+  object ABitrateMenu: TPopupMenu
+    Left = 200
+    Top = 200
+  end
+  object FileSizeMenu: TPopupMenu
+    Left = 200
+    Top = 264
+  end
+  object VBitrateMenu: TPopupMenu
+    Left = 304
+    Top = 200
   end
 end
