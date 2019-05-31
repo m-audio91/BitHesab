@@ -36,7 +36,7 @@ type
     procedure DoRun; override;
   private
     FDuration,
-    FaBitrate: Longint;
+    FaBitrate,
     FvBitrate,
     FFileSize,
     FOverhead: Double;
@@ -53,22 +53,22 @@ type
   end;
 
 const
-  Ver = '1.0.4';
-  MinFileSize=1;
-  MaxFileSize = 1048576;
-  DefFileSize = 700;
-  MinVBit = 1;
-  MaxVBit = 135606;
-  DefVBit = 832;
-  MinABit = 0;
-  MaxABit = 20000;
-  DefABit = 96;
-  MinDur = 1;
-  MaxDur = 12747599;
-  DefDur = 6330;
-  MinDurStr = '00:00:01';
-  MaxDurStr = '59:59:59';
-  DefDurStr = '01:45:30';
+  Ver='1.0.4';
+  MinFileSize=0.1;
+  MaxFileSize=104857600;
+  DefFileSize=700;
+  MinVBit=0.1;
+  MaxVBit=13560600;
+  DefVBit=832;
+  MinABit=0;
+  MaxABit=20000;
+  DefABit=96;
+  MinDur=1;
+  MaxDur=12747599;
+  DefDur=6330;
+  MinDurStr='00:00:01';
+  MaxDurStr='1000:59:59';
+  DefDurStr='01:45:30';
 
 resourcestring
   rsHelp='BitHesab v%s'
@@ -94,13 +94,13 @@ resourcestring
   + LineEnding
   + 'OPTIONS: '
   + LineEnding
-  + '-h, --help:          show this help'
+  + '-h, --help:          shows this help'
   + LineEnding
   + '-d, --duration:      <string> duration in form HH:MM:SS or H:M:S and so on. from %s to %s, default %s'
   + LineEnding
-  + '-a, --abitrate:      <longint> audio bitrate in kilobit/s. from %s to %s, default %s'
+  + '-a, --abitrate:      <double> audio bitrate in kilobit/s. from %s to %s, default %s'
   + LineEnding
-  + '-v, --vbitrate:      <longint> video bitrate in kilobit/s. from %s to %s, default %s'
+  + '-v, --vbitrate:      <double> video bitrate in kilobit/s. from %s to %s, default %s'
   + LineEnding
   + '-s, --filesize:      <double> file size in megabytes. or in case of -g used, in gigabytes. from %s to %s, default %s'
   + LineEnding
@@ -123,7 +123,7 @@ resourcestring
   rsWrongABit='ERROR: Wrong value entered for audio bitrate!';
   rsWrongOverhead='ERROR: Wrong value entered for overhead!';
   rsWrongSize='ERROR: Wrong value entered for file size!';
-  rsWhatDoYouWant='ERROR: It is not clear what you want. --vbitrate and --filesize cannot be used at the same time or not used at the same time';
+  rsWhatDoYouWant='ERROR: It is not clear what you want. --vbitrate and --filesize cannot be used at the same time or ommited at the same time';
   rsClipping='WARNING: Clipping occured. your result may be wrong. Option: ';
 
 { TBitHesab }
@@ -168,7 +168,6 @@ end;
 procedure TBitHesab.ParseParams;
 var
   s: String;
-  i: LongInt;
   d: Double;
   b1,b2: Boolean;
   TC: TTimeCode;
@@ -204,9 +203,9 @@ begin
   if HasOption('v', 'vbitrate') then
   begin
     s:=GetOptionValue('v', 'vbitrate');
-    if TryStrToInt(s, i) then
+    if TryStrToFloat(s, d) then
     begin
-      FvBitrate:=i;
+      FvBitrate:=d;
       b1:=ForceInRange(FvBitrate, MinVBit, MaxVBit);
       if b1 then
         Warn(rsClipping+'vbitrate');
@@ -218,9 +217,9 @@ begin
   if HasOption('a', 'abitrate') then
   begin
     s:=GetOptionValue('a', 'abitrate');
-    if TryStrToInt(s, i) then
+    if TryStrToFloat(s, d) then
     begin
-      FaBitrate:=i;
+      FaBitrate:=d;
       b1:=ForceInRange(FaBitrate, MinABit, MaxABit);
       if b1 then
         Warn(rsClipping+'abitrate');
@@ -247,7 +246,7 @@ begin
   begin
     s:=GetOptionValue('d', 'duration');
     TC.ValueAsString:=s;
-    FDuration:=Trunc(TC.ValueAsDouble);
+    FDuration:=TC.ValueAsDouble;
     if FDuration=0 then
       Fatal(rsWrongDur)
     else
