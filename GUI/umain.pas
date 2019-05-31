@@ -235,17 +235,20 @@ end;
 
 procedure TBH.ABitrateMIClick(Sender: TObject);
 begin
-  ABit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
+  ABit.Value:=String((Sender as TMenuItem).Caption).ToInteger; 
+  CalcClick(Calc);
 end;
 
 procedure TBH.VBitrateMIClick(Sender: TObject);
 begin
-  VBit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
+  VBit.Value:=String((Sender as TMenuItem).Caption).ToInteger; 
+  CalcClick(Calc);
 end;
 
 procedure TBH.FileSizeMIClick(Sender: TObject);
 begin
   FileSize.Value:=String((Sender as TMenuItem).Caption).ToInteger;
+  CalcClick(Calc);
 end;
 
 procedure TBH.FileSizeBasedChange(Sender: TObject);
