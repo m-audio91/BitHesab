@@ -108,30 +108,30 @@ type
   end;
 
 resourcestring
-  Issues = 'پشتیبانی و گزارش خطا';
-  IssuesUrl = 'https://github.com/m-audio91/BitHesab/issues';
-  Author = 'خانه';
+  Issues='پشتیبانی و گزارش خطا';
+  IssuesUrl='https://github.com/m-audio91/BitHesab/issues';
+  Author='خانه';
   AuthorUrl ='http://mohammadrezab.blogsky.com';
-  LicenseVer = 'GPLv3';
-  LicenseUrl = 'https://www.gnu.org/licenses/gpl-3.0.en.html';
-  LEng = 'English';
-  LPer = 'فارسی';
-  engCalc = 'Calculate';
-  engDuratonContainer = 'Duration';
-  engaBitContainer = 'Audio Bitrate';
-  engvBitBased = 'Video Bitrate';
-  engOverheadContainer = 'Container Overhead';
-  engFileSizeBased = 'File Size';
-  engHeaderTitle = 'BitHesab - Calculate video bitrate and file size before conversion';
-  engAuthor = 'Home Page';
-  engIssues = 'Support and Issue Reporting';
-  perCalc = 'محاسبه کن';
-  perDuratonContainer = 'مدت زمان';
-  peraBitContainer = 'نرخ بیت صدا(ها)';
-  pervBitBased = 'نرخ بیت تصویر';
-  perOverheadContainer = 'میزان اضافه حجم حامل';
-  perFileSizeBased = 'حجم فایل خروجی';
-  perHeaderTitle = 'بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل';
+  LicenseVer='GPLv3';
+  LicenseUrl='https://www.gnu.org/licenses/gpl-3.0.en.html';
+  LEng='English';
+  LPer='فارسی';
+  engCalc='Calculate';
+  engDuratonContainer='Duration';
+  engaBitContainer='Audio Bitrate';
+  engvBitBased='Video Bitrate';
+  engOverheadContainer='Container Overhead';
+  engFileSizeBased='File Size';
+  engHeaderTitle='BitHesab - Calculate video bitrate and file size before conversion';
+  engAuthor='Home Page';
+  engIssues='Support and Issue Reporting';
+  perCalc='محاسبه کن';
+  perDurationContainer='مدت زمان';
+  peraBitContainer='نرخ بیت صدا(ها)';
+  pervBitBased='نرخ بیت تصویر';
+  perOverheadContainer='میزان اضافه حجم حامل';
+  perFileSizeBased='حجم فایل خروجی';
+  perHeaderTitle='بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل';
 
 const
   ABitrates: array [0..11] of String = ('48','56','64','96','128','256'
@@ -153,57 +153,57 @@ implementation
 procedure TBH.FormCreate(Sender: TObject);
 begin
   {$ifdef darwin}
-    MainMenu := TMainMenu.Create(Self);
-    MainMenu.Parent := Self;
-    AppMenu := TMenuItem.Create(Self);
-    AppMenu.Caption := #$EF#$A3#$BF;
+    MainMenu:=TMainMenu.Create(Self);
+    MainMenu.Parent:=Self;
+    AppMenu:=TMenuItem.Create(Self);
+    AppMenu.Caption:=#$EF#$A3#$BF;
     MainMenu.Items.Insert(0, AppMenu);
   {$endif}
-  FAuthorUrl := TUrlLabelEx.Create(Self);
+  FAuthorUrl:=TUrlLabelEx.Create(Self);
   with FAuthorUrl do
   begin
-    Parent := HeaderLinks;
-    Caption := Author;
-    Hint := Author;
-    URL := AuthorUrl;
-    Font.Color := $0086C6E4;
-    Alignment := taRightJustify;
+    Parent:=HeaderLinks;
+    Caption:=Author;
+    Hint:=Author;
+    URL:=AuthorUrl;
+    Font.Color:=$0086C6E4;
+    Alignment:=taRightJustify;
   end;
-  FIssuesUrl := TUrlLabelEx.Create(Self);
+  FIssuesUrl:=TUrlLabelEx.Create(Self);
   with FIssuesUrl do
   begin
-    Parent := HeaderLinks;
-    Caption := Issues;
-    Hint := Issues;
-    URL := IssuesUrl;
-    Font.Color := $0086C6E4;
-    Alignment := taRightJustify;
+    Parent:=HeaderLinks;
+    Caption:=Issues;
+    Hint:=Issues;
+    URL:=IssuesUrl;
+    Font.Color:=$0086C6E4;
+    Alignment:=taRightJustify;
   end;
-  FLicenseUrl := TUrlLabelEx.Create(Self);
+  FLicenseUrl:=TUrlLabelEx.Create(Self);
   with FLicenseUrl do
   begin
-    Parent := Footer;
-    Caption := LicenseVer;
-    URL := LicenseUrl;
-    HighlightColor := $0086C6E4;
+    Parent:=Footer;
+    Caption:=LicenseVer;
+    URL:=LicenseUrl;
+    HighlightColor:=$0086C6E4;
   end;
-  FLangUrl := TCustomUrlLabel.Create(Self);
+  FLangUrl:=TCustomUrlLabel.Create(Self);
   with FLangUrl do
   begin
-    Parent := Footer;
-    Caption := LEng;
-    HighlightColor := $0086C6E4;
-    OnClick := @LangUrlClick;
+    Parent:=Footer;
+    Caption:=LEng;
+    HighlightColor:=$0086C6E4;
+    OnClick:=@LangUrlClick;
   end;
-  FEnglishUI := True;
-  FMode := cmCalcvBit;
+  FEnglishUI:=True;
+  FMode:=cmCalcvBit;
 end;
 
 procedure TBH.FormShow(Sender: TObject);
 begin
   ChangeLang;
   {$ifdef linux}
-  MainContainer.Color := clForm;
+  MainContainer.Color:=clForm;
   {$endif}
   SetPopupMenuValues;
   CalcClick(Calc);
@@ -211,7 +211,7 @@ end;
 
 procedure TBH.SetFormWidth;
 begin
-  Constraints.MinWidth := Round(HeaderTitleL.Width+HeaderIcon.Width*1.5);
+  Constraints.MinWidth:=Round(HeaderTitleL.Width+HeaderIcon.Width*1.5);
 end;
 
 procedure TBH.SetPopupMenuValues;
@@ -229,65 +229,65 @@ end;
 
 procedure TBH.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  if (Key = VK_RETURN) then
+  if Key=VK_RETURN then
     CalcClick(Calc);
 end; 
 
 procedure TBH.ABitrateMIClick(Sender: TObject);
 begin
-  ABit.Value := String((Sender as TMenuItem).Caption).ToInteger;
+  ABit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
 end;
 
 procedure TBH.VBitrateMIClick(Sender: TObject);
 begin
-  VBit.Value := String((Sender as TMenuItem).Caption).ToInteger;
+  VBit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
 end;
 
 procedure TBH.FileSizeMIClick(Sender: TObject);
 begin
-  FileSize.Value := String((Sender as TMenuItem).Caption).ToInteger;
+  FileSize.Value:=String((Sender as TMenuItem).Caption).ToInteger;
 end;
 
 procedure TBH.FileSizeBasedChange(Sender: TObject);
 begin
   with FileSizeValueContainer do
   begin
-    Enabled := FileSizeBased.State = cbChecked;
+    Enabled:=FileSizeBased.State = cbChecked;
     if Enabled then
-      FMode := cmCalcvBit;
+      FMode:=cmCalcvBit;
   end;
   CalcClick(Calc);
 end;
 
 procedure TBH.IniPropsRestoringProperties(Sender: TObject);
 begin
-  SessionProperties := SessionProperties+';EnglishUI';
+  SessionProperties:=SessionProperties+';EnglishUI';
 end;
 
 procedure TBH.vBitBasedChange(Sender: TObject);
 begin
   with vBitValueContainer do
   begin
-    Enabled := vBitBased.State = cbChecked;
+    Enabled:=vBitBased.State = cbChecked;
     if Enabled then
-      FMode := cmCalcSize;
+      FMode:=cmCalcSize;
   end;
   CalcClick(Calc);
 end;
 
 procedure TBH.FileSizeUnitChange(Sender: TObject);
 const
-  MAXVAL = 104857600;
+  MAXVAL=104857600;
 begin
-  FileSize.MaxValue := 0;
+  FileSize.MaxValue:=0;
   case FileSizeUnit.ItemIndex of
   0: begin
-    FileSize.Value := FileSize.Value * 1024; 
-    FileSize.MaxValue := MAXVAL;
+    FileSize.Value:=FileSize.Value*1024;
+    FileSize.MaxValue:=MAXVAL;
     end;
   1: begin
-    FileSize.Value := FileSize.Value / 1024;
-    FileSize.MaxValue := MAXVAL div 1024;
+    FileSize.Value:=FileSize.Value/1024;
+    FileSize.MaxValue:=MAXVAL div 1024;
     end;
   end;
   SetPopupMenuValues;
@@ -296,19 +296,19 @@ end;
 
 procedure TBH.vBitUnitChange(Sender: TObject);
 const
-  MAXVAL = 13560600;
+  MAXVAL=13560600;
 begin
-  vBit.MaxValue := 0;
+  vBit.MaxValue:=0;
   case vBitUnit.ItemIndex of
   0: begin
-    vBit.Value := Trunc(vBit.Value * 1000);
-    vBit.MaxValue := MAXVAL;
-    vBit.Increment := 1;
+    vBit.Value:=Trunc(vBit.Value*1000);
+    vBit.MaxValue:=MAXVAL;
+    vBit.Increment:=1;
     end;
   1: begin
-    vBit.Value := vBit.Value / 1000;
-    vBit.MaxValue := MAXVAL / 1000;
-    vBit.Increment := 0.1;
+    vBit.Value:=vBit.Value/1000;
+    vBit.MaxValue:=MAXVAL/1000;
+    vBit.Increment:=0.1;
     end;
   end;
   SetPopupMenuValues;
@@ -322,32 +322,32 @@ begin
   cmCalcvBit:
     begin
       try
-        FS := FS * (1024*8); //in kilobit
-        OH := (FS/100) * OH;
-        FS := FS - OH;
-        if FSUnit = 1 then
-          FS := FS*1024;
-        VB := ((FS / Dur)*1.024) - AB;
-        if VBUnit = 1 then
-          VB := VB/1000;
-        Result:= VB;
+        FS:=FS*(1024*8); //in kilobit
+        OH:=(FS/100)*OH;
+        FS:=FS-OH;
+        if FSUnit=1 then
+          FS:=FS*1024;
+        VB:=((FS/Dur)*1.024)-AB;
+        if VBUnit=1 then
+          VB:=VB/1000;
+        Result:=VB;
       except
-        Result := 1;
+        Result:=1;
       end;
     end;
   cmCalcSize:
     begin
       try
-        if VBUnit = 1 then
-          VB := VB*1000;
-        FS := (((VB + AB)*1000) * Dur) / ((1024*8)*1024);
-        OH := (FS/100) * OH;
-        FS := FS + OH;
-        if FSUnit = 1 then
-          FS := FS/1024;
-        Result := FS;
+        if VBUnit=1 then
+          VB:=VB*1000;
+        FS:=(((VB + AB)*1000)*Dur) / ((1024*8)*1024);
+        OH:=(FS/100)*OH;
+        FS:=FS+OH;
+        if FSUnit=1 then
+          FS:=FS/1024;
+        Result:=FS;
       except
-        Result := 1;
+        Result:=1;
       end;
     end;
   end;
@@ -357,8 +357,8 @@ procedure TBH.CalcClick(Sender: TObject);
 var
   Val: Double;
 begin
-  Val := DoCalc(
-    ((DurH.Value*3600) + (DurM.Value*60) + DurS.Value),
+  Val:=DoCalc(
+    ((DurH.Value*3600)+(DurM.Value*60)+DurS.Value),
     aBit.Value,
     Overhead.Value,
     FileSizeUnit.ItemIndex,
@@ -368,19 +368,19 @@ begin
     FMode
   );
   case FMode of
-  cmCalcSize: FileSize.Value := Val;
+  cmCalcSize: FileSize.Value:=Val;
   cmCalcvBit: begin
     if vBitUnit.ItemIndex=1 then
-      vBit.Value := Val
+      vBit.Value:=Val
     else
-      vBit.Value := Round(Val);
+      vBit.Value:=Round(Val);
     end;
   end;
 end;
 
 procedure TBH.LangUrlClick(Sender: TObject);
 begin
-  FEnglishUI := False = FEnglishUI;
+  FEnglishUI:=False=FEnglishUI;
   ChangeLang;
 end;
 
@@ -388,29 +388,29 @@ procedure TBH.ChangeLang;
 begin
   if EnglishUI then
   begin
-    Calc.Caption := engCalc;
-    DuratonContainer.Caption := engDuratonContainer;
-    aBitContainer.Caption := engaBitContainer;
-    vBitBasedL.Caption := engvBitBased;
-    OverheadContainer.Caption := engOverheadContainer;
-    FileSizeBasedL.Caption := engFileSizeBased;
-    HeaderTitleL.Caption := engHeaderTitle;
-    FAuthorUrl.Caption := engAuthor;
-    FIssuesUrl.Caption := engIssues;
-    FLangUrl.Caption := LPer;
+    Calc.Caption:=engCalc;
+    DuratonContainer.Caption:=engDuratonContainer;
+    aBitContainer.Caption:=engaBitContainer;
+    vBitBasedL.Caption:=engvBitBased;
+    OverheadContainer.Caption:=engOverheadContainer;
+    FileSizeBasedL.Caption:=engFileSizeBased;
+    HeaderTitleL.Caption:=engHeaderTitle;
+    FAuthorUrl.Caption:=engAuthor;
+    FIssuesUrl.Caption:=engIssues;
+    FLangUrl.Caption:=LPer;
   end
   else
   begin
-    Calc.Caption := perCalc;
-    DuratonContainer.Caption := perDuratonContainer;
-    aBitContainer.Caption := peraBitContainer;
-    vBitBasedL.Caption := pervBitBased;
-    OverheadContainer.Caption := perOverheadContainer;
-    FileSizeBasedL.Caption := perFileSizeBased;
-    HeaderTitleL.Caption := perHeaderTitle;
-    FAuthorUrl.Caption := Author;
-    FIssuesUrl.Caption := Issues;
-    FLangUrl.Caption := LEng;
+    Calc.Caption:=perCalc;
+    DuratonContainer.Caption:=perDurationContainer;
+    aBitContainer.Caption:=peraBitContainer;
+    vBitBasedL.Caption:=pervBitBased;
+    OverheadContainer.Caption:=perOverheadContainer;
+    FileSizeBasedL.Caption:=perFileSizeBased;
+    HeaderTitleL.Caption:=perHeaderTitle;
+    FAuthorUrl.Caption:=Author;
+    FIssuesUrl.Caption:=Issues;
+    FLangUrl.Caption:=LEng;
   end;
   SetFormWidth;
 end;

@@ -6,7 +6,7 @@ object BH: TBH
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'BitHesab'
+  Caption = 'BitHesab v1.3.0'
   ClientHeight = 327
   ClientWidth = 538
   Constraints.MinHeight = 238
