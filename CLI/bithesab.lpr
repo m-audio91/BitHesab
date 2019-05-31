@@ -53,8 +53,8 @@ type
   end;
 
 const
-  Ver = '1.0.2';
-  MinFileSize = 1;
+  Ver = '1.0.3';
+  MinFileSize=1;
   MaxFileSize = 1048576;
   DefFileSize = 700;
   MinVBit = 1;
@@ -71,13 +71,13 @@ const
   DefDurStr = '01:45:30';
 
 resourcestring
-  rsHelp =  'BitHesab v%s'
+  rsHelp='BitHesab v%s'
   + LineEnding
   + 'A simple commandline bitrate calculator'
   + LineEnding
-  + '{ video bitrate := (file size / time) - audio bitrate }'
+  + '{ video bitrate:=(file size / time) - audio bitrate }'
   + LineEnding
-  + '{ file size := (video bitrate + audio bitrate) * time }'
+  + '{ file size:=(video bitrate + audio bitrate) * time }'
   + LineEnding
   + LineEnding
   + 'Compiled on %s using Free Pascal Compiler, version %s'
@@ -118,13 +118,13 @@ resourcestring
   + LineEnding
   + '.\BitHesab.exe --duration=43:30 --abitrate=96 --filesize=230'
   + LineEnding;
-  rsWrongDur = 'ERROR: Wrong value entered for duration!';
-  rsWrongVBit = 'ERROR: Wrong value entered for video bitrate!';
-  rsWrongABit = 'ERROR: Wrong value entered for audio bitrate!';
-  rsWrongOverhead = 'ERROR: Wrong value entered for overhead!';
-  rsWrongSize = 'ERROR: Wrong value entered for file size!';
-  rsWhatDoYouWant = 'ERROR: It is not clear what you want. --vbitrate and --filesize cannot be used at the same time or not used at the same time';
-  rsClipping = 'WARNING: Clipping occured. your result may be wrong. Option: ';
+  rsWrongDur='ERROR: Wrong value entered for duration!';
+  rsWrongVBit='ERROR: Wrong value entered for video bitrate!';
+  rsWrongABit='ERROR: Wrong value entered for audio bitrate!';
+  rsWrongOverhead='ERROR: Wrong value entered for overhead!';
+  rsWrongSize='ERROR: Wrong value entered for file size!';
+  rsWhatDoYouWant='ERROR: It is not clear what you want. --vbitrate and --filesize cannot be used at the same time or not used at the same time';
+  rsClipping='WARNING: Clipping occured. your result may be wrong. Option: ';
 
 { TBitHesab }
 
@@ -132,7 +132,7 @@ procedure TBitHesab.DoRun;
 var
   ErrorMsg: String;
 begin
-  if HasOption('h', 'help') or (ParamCount < 1) then
+  if HasOption('h','help') or (ParamCount<1) then
   begin
     WriteHelp;
     Terminate;
@@ -140,20 +140,20 @@ begin
   end;
 
   try
-    ErrorMsg := CheckOptions('d:a:v:s:o:ge', 'duration: abitrate: vbitrate: '
-    + 'filesize: overhead: gigabyte erroroutput');
-    if ErrorMsg <> EmptyStr then
+    ErrorMsg:=CheckOptions('d:a:v:s:o:ge', 'duration: abitrate: vbitrate: '
+      +'filesize: overhead: gigabyte erroroutput');
+    if ErrorMsg<>EmptyStr then
       Fatal(ErrorMsg);
     ParseParams;
   except
     on E: Exception do
     begin
-      ErrorMsg := E.Message;
+      ErrorMsg:=E.Message;
       WriteLn(Stderr, ErrorMsg);
     end;
   end;
 
-  if ErrorMsg <> EmptyStr then
+  if ErrorMsg<>EmptyStr then
   begin
     WriteLn(StdOut, -1);
     Terminate;
@@ -173,29 +173,29 @@ var
   b1,b2: Boolean;
   TC: TTimeCode;
 begin
-  b1 := HasOption('v', 'vbitrate');
-  b2 := HasOption('s', 'filesize');
+  b1:=HasOption('v', 'vbitrate');
+  b2:=HasOption('s', 'filesize');
   if b1 and not b2 then
-    FCalcMode := cmCalcSize
+    FCalcMode:=cmCalcSize
   else if not b1 and b2 then
-    FCalcMode := cmCalcvBit
+    FCalcMode:=cmCalcvBit
   else if b1 and b2
   or not b1 and not b2 then
     Fatal(rsWhatDoYouWant);
 
   if HasOption('g', 'gigabyte') then
-    FInGigabyte := True;
+    FInGigabyte:=True;
 
   if HasOption('s', 'filesize') then
   begin
-    s := GetOptionValue('s', 'filesize');
+    s:=GetOptionValue('s', 'filesize');
     if TryStrToFloat(s, d) then
     begin
-      FFileSize := d;
-      b1 := ForceInRange(FFileSize, MinFileSize, MaxFileSize);
+      FFileSize:=d;
+      b1:=ForceInRange(FFileSize, MinFileSize, MaxFileSize);
       if b1 then
-        Warn(rsClipping + 'filesize');
-      FFileSize := FFileSize * (1024 * 8); //in kilobit
+        Warn(rsClipping+'filesize');
+      FFileSize:=FFileSize*(1024*8); //in kilobit
     end
     else
       Fatal(rsWrongSize);
@@ -203,13 +203,13 @@ begin
 
   if HasOption('v', 'vbitrate') then
   begin
-    s := GetOptionValue('v', 'vbitrate');
+    s:=GetOptionValue('v', 'vbitrate');
     if TryStrToInt(s, i) then
     begin
-      FvBitrate := i;
-      b1 := ForceInRange(FvBitrate, MinVBit, MaxVBit);
+      FvBitrate:=i;
+      b1:=ForceInRange(FvBitrate, MinVBit, MaxVBit);
       if b1 then
-        Warn(rsClipping + 'vbitrate');
+        Warn(rsClipping+'vbitrate');
     end
     else
       Fatal(rsWrongVBit);
@@ -217,13 +217,13 @@ begin
 
   if HasOption('a', 'abitrate') then
   begin
-    s := GetOptionValue('a', 'abitrate');
+    s:=GetOptionValue('a', 'abitrate');
     if TryStrToInt(s, i) then
     begin
-      FaBitrate := i;
-      b1 := ForceInRange(FaBitrate, MinABit, MaxABit);
+      FaBitrate:=i;
+      b1:=ForceInRange(FaBitrate, MinABit, MaxABit);
       if b1 then
-        Warn(rsClipping + 'abitrate');
+        Warn(rsClipping+'abitrate');
     end
     else
       Fatal(rsWrongABit);
@@ -231,13 +231,13 @@ begin
 
   if HasOption('o', 'overhead') then
   begin
-    s := GetOptionValue('o', 'overhead');
+    s:=GetOptionValue('o', 'overhead');
     if TryStrToFloat(s, d) then
     begin
-      FOverhead := d;
-      b1 := ForceInRange(FOverhead, 0, 100);
+      FOverhead:=d;
+      b1:=ForceInRange(FOverhead, 0, 100);
       if b1 then
-        Warn(rsClipping + 'overhead');
+        Warn(rsClipping+'overhead');
     end
     else
       Fatal(rsWrongOverhead);
@@ -245,16 +245,16 @@ begin
 
   if HasOption('d', 'duration') then
   begin
-    s := GetOptionValue('d', 'duration');
-    TC.ValueAsString := s;
-    FDuration := Trunc(TC.ValueAsDouble);
-    if FDuration = 0 then
+    s:=GetOptionValue('d', 'duration');
+    TC.ValueAsString:=s;
+    FDuration:=Trunc(TC.ValueAsDouble);
+    if FDuration=0 then
       Fatal(rsWrongDur)
     else
     begin
-    b1 := ForceInRange(FDuration, MinDur, MaxDur);
+    b1:=ForceInRange(FDuration, MinDur, MaxDur);
       if b1 then
-        Warn(rsClipping + 'duration');
+        Warn(rsClipping+'duration');
     end;
   end;
 end;
@@ -264,24 +264,24 @@ begin
   case FCalcMode of
   cmCalcvBit:
     begin
-      FOverhead := (FFileSize/100) * FOverhead;
-      FFileSize := FFileSize - FOverhead;
+      FOverhead:=(FFileSize/100)*FOverhead;
+      FFileSize:=FFileSize-FOverhead;
       if FInGigabyte then
-        FFileSize := FFileSize*1024;
-      FvBitrate := ((FFileSize / FDuration)*1.024) - FaBitrate;
-      if FvBitrate < 1 then
-        FvBitrate := -1;
+        FFileSize:=FFileSize*1024;
+      FvBitrate:=((FFileSize/FDuration)*1.024)-FaBitrate;
+      if FvBitrate<1 then
+        FvBitrate:=-1;
       WriteLn(StdOut, Round(FvBitrate));
     end;
   cmCalcSize:
     begin
-      FFileSize := (((FvBitrate + FaBitrate)*1000) * FDuration) / ((1024*8)*1024);
-      FOverhead := (FFileSize/100) * FOverhead;
-      FFileSize := FFileSize + FOverhead;
+      FFileSize:=(((FvBitrate+FaBitrate)*1000)*FDuration)/((1024*8)*1024);
+      FOverhead:=(FFileSize/100)*FOverhead;
+      FFileSize:=FFileSize + FOverhead;
       if FInGigabyte then
-        FFileSize := FFileSize/1024;
-      if FFileSize < 1 then
-        FFileSize := -1;
+        FFileSize:=FFileSize/1024;
+      if FFileSize<1 then
+        FFileSize:=-1;
       WriteLn(StdOut, FloatRound(FFileSize,3).ToString.Replace(',','.'));
     end;
   end;
@@ -300,15 +300,15 @@ end;
 constructor TBitHesab.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
-  StopOnException := True;
-  CaseSensitiveOptions := False;
-  FDuration := DefDur;
-  FaBitrate := DefABit;
-  FvBitrate := DefVBit;
-  FFileSize := DefFileSize;
-  FOverhead := 0;
-  FInGigabyte := False;
-  FCalcMode := cmCalcvBit;
+  StopOnException:=True;
+  CaseSensitiveOptions:=False;
+  FDuration:=DefDur;
+  FaBitrate:=DefABit;
+  FvBitrate:=DefVBit;
+  FFileSize:=DefFileSize;
+  FOverhead:=0;
+  FInGigabyte:=False;
+  FCalcMode:=cmCalcvBit;
 end;
 
 destructor TBitHesab.Destroy;
@@ -320,7 +320,7 @@ procedure TBitHesab.WriteHelp;
 var
   h: String;
 begin
-  h := Format(rsHelp, [
+  h:=Format(rsHelp, [
   Ver,
   FormatDateTime('d mmmm yyyy', Now),
   {$i %FPCVERSION%},
@@ -347,7 +347,7 @@ var
 {$R *.res}
 
 begin
-  Application := TBitHesab.Create(nil);
+  Application:=TBitHesab.Create(nil);
   Application.Title:='BitHesab';
   DefaultFormatSettings.DecimalSeparator:='.';
   Application.Run;
