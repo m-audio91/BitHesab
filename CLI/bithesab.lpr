@@ -2,7 +2,7 @@ program BitHesab;
 { BitHesab: Free video bitrate/file size calculator. available in both CLI and
   GUI versions.
 
-  Copyright (C) 2017 Mohammadreza Bahrami m.audio91@gmail.com
+  Copyright (C) 2019 Mohammadreza Bahrami m.audio91@gmail.com
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ type
   end;
 
 const
-  Ver = '1.0.3';
+  Ver = '1.0.4';
   MinFileSize=1;
   MaxFileSize = 1048576;
   DefFileSize = 700;
