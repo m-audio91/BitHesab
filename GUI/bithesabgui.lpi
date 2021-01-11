@@ -23,10 +23,10 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
-      <BuildNr Value="108"/>
+      <BuildNr Value="110"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free video bitrate/file size calculator. available in both CLI and GUI versions." LegalCopyright="MohammadReza Bahrami" ProductName="BitHesab" ProductVersion="1.3.0.0"/>
     </VersionInfo>
-    <BuildModes Count="6">
+    <BuildModes Count="7">
       <Item1 Name="Debug" Default="True"/>
       <Item2 Name="Release win32">
         <MacroValues Count="1">
@@ -66,7 +66,7 @@
       </Item2>
       <Item3 Name="Release linux64">
         <MacroValues Count="1">
-          <Macro4 Name="LCLWidgetType" Value="gtk2"/>
+          <Macro2 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -100,7 +100,7 @@
       </Item3>
       <Item4 Name="Release linux32">
         <MacroValues Count="1">
-          <Macro2 Name="LCLWidgetType" Value="gtk2"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -136,7 +136,7 @@
       </Item4>
       <Item5 Name="Release darwin64">
         <MacroValues Count="1">
-          <Macro3 Name="LCLWidgetType" Value="cocoa"/>
+          <Macro4 Name="LCLWidgetType" Value="cocoa"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -169,7 +169,7 @@ LinkerOptions += &apos; -WM10.7&apos;;"/>
           </Linking>
         </CompilerOptions>
       </Item5>
-      <Item6 Name="Release linux64 Qt">
+      <Item6 Name="Release linux64 Qt5">
         <MacroValues Count="1">
           <Macro5 Name="LCLWidgetType" Value="qt5"/>
         </MacroValues>
@@ -205,12 +205,50 @@ LinkerOptions += &apos; -WM10.7&apos;;"/>
           </Linking>
         </CompilerOptions>
       </Item6>
-      <SharedMatrixOptions Count="5">
+      <Item7 Name="Release ARM7-HF-linux">
+        <MacroValues Count="1">
+          <Macro6 Name="LCLWidgetType" Value="gtk2"/>
+        </MacroValues>
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="bithesab-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="..\commonutils"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <TargetProcessor Value="ARMV7"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item7>
+      <SharedMatrixOptions Count="6">
         <Item1 ID="939455388592" Modes="Release win32" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
-        <Item2 ID="317891149601" Modes="Release linux32" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
-        <Item3 ID="822254740319" Modes="Release darwin64" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
-        <Item4 ID="340249475742" Modes="Release linux64" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
-        <Item5 ID="557100240541" Modes="Release linux64 Qt" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt5"/>
+        <Item2 ID="340249475742" Modes="Release linux64" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item3 ID="317891149601" Modes="Release linux32" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
+        <Item4 ID="822254740319" Modes="Release darwin64" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
+        <Item5 ID="256335606090" Modes="Release linux64 Qt5" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt5"/>
+        <Item6 ID="421223752257" Modes="Release ARM7-HF-linux" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
