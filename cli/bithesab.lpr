@@ -53,7 +53,7 @@ type
   end;
 
 const
-  Ver='1.0.4';
+  Ver='1.0.5';
   MinFileSize=0.1;
   MaxFileSize=104857600;
   DefFileSize=700;
@@ -321,7 +321,7 @@ var
 begin
   h:=Format(rsHelp, [
   Ver,
-  FormatDateTime('d mmmm yyyy', Now),
+  DateToStr(Now),
   {$i %FPCVERSION%},
   FormatDateTime('yyyy', Now),
   MinDurStr,
