@@ -23,7 +23,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
-      <BuildNr Value="110"/>
+      <BuildNr Value="134"/>
       <StringTable Comments="http://mohammadrezab.blogsky.com" CompanyName="MohammadReza Bahrami" FileDescription="Free video bitrate/file size calculator. available in both CLI and GUI versions." LegalCopyright="MohammadReza Bahrami" ProductName="BitHesab" ProductVersion="1.3.0.0"/>
     </VersionInfo>
     <BuildModes Count="7">
@@ -40,7 +40,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -76,7 +76,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -110,7 +110,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -146,7 +146,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Conditionals Value="// to support older MacOS versions
@@ -181,7 +181,7 @@ LinkerOptions += &apos; -WM10.7&apos;;"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)-qt5"/>
           </SearchPaths>
           <CodeGeneration>
@@ -217,7 +217,7 @@ LinkerOptions += &apos; -WM10.7&apos;;"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\commonutils"/>
+            <OtherUnitFiles Value="..\..\commonutils"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -293,7 +293,7 @@ LinkerOptions += &apos; -WM10.7&apos;;"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\commonutils"/>
+      <OtherUnitFiles Value="..\..\commonutils"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
