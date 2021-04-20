@@ -298,7 +298,9 @@ object BH: TBH
         Width = 110
         Align = alLeft
         Alignment = taCenter
+        DecimalPlaces = 3
         Increment = 0.2
+        MaxValue = 100
         OnExit = CalcClick
         OnKeyDown = FormKeyDown
         TabOrder = 0
