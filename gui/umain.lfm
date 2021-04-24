@@ -11,9 +11,11 @@ object BH: TBH
   ClientWidth = 486
   Constraints.MinHeight = 238
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   SessionProperties = 'Left;Top;DurH.Value;DurM.Value;DurS.Value;aBit.Value;Overhead.Value;FileSizeBased.Checked;FileSizeUnit.ItemIndex;FileSize.MaxValue;FileSize.Value;vBitBased.Checked;vBitUnit.ItemIndex;vBit.Increment;vBit.MaxValue;vBit.Value'
+  LCLVersion = '2.1.0.0'
   object Header: TPanel
     Left = 0
     Height = 72
@@ -142,7 +144,7 @@ object BH: TBH
     ParentBidiMode = False
     ParentShowHint = False
     TabOrder = 2
-    object DuratonContainer: TPanel
+    object DurationContainer: TPanel
       Left = 6
       Height = 26
       Top = 8
@@ -162,7 +164,7 @@ object BH: TBH
         Left = 0
         Height = 26
         Top = 0
-        Width = 80
+        Width = 100
         Align = alLeft
         Alignment = taCenter
         MaxValue = 1000
@@ -171,7 +173,7 @@ object BH: TBH
         TabOrder = 0
       end
       object Sep1: TLabel
-        Left = 82
+        Left = 102
         Height = 26
         Top = 0
         Width = 4
@@ -183,10 +185,10 @@ object BH: TBH
         ParentColor = False
       end
       object DurM: TSpinEdit
-        Left = 88
+        Left = 108
         Height = 26
         Top = 0
-        Width = 80
+        Width = 100
         Align = alLeft
         Alignment = taCenter
         MaxValue = 59
@@ -196,7 +198,7 @@ object BH: TBH
         Value = 45
       end
       object Sep2: TLabel
-        Left = 170
+        Left = 210
         Height = 26
         Top = 0
         Width = 4
@@ -208,10 +210,10 @@ object BH: TBH
         ParentColor = False
       end
       object DurS: TSpinEdit
-        Left = 176
+        Left = 216
         Height = 26
         Top = 0
-        Width = 80
+        Width = 100
         Align = alLeft
         Alignment = taCenter
         MaxValue = 59
@@ -240,7 +242,7 @@ object BH: TBH
         Left = 0
         Height = 26
         Top = 0
-        Width = 110
+        Width = 170
         Align = alLeft
         Alignment = taCenter
         MaxValue = 100000
@@ -251,7 +253,7 @@ object BH: TBH
         Value = 96
       end
       object aBitUnitL: TLabel
-        Left = 112
+        Left = 172
         Height = 26
         Top = 0
         Width = 28
@@ -280,7 +282,7 @@ object BH: TBH
       ClientWidth = 474
       TabOrder = 2
       object OverheadUnitL: TLabel
-        Left = 112
+        Left = 172
         Height = 26
         Top = 0
         Width = 13
@@ -295,7 +297,7 @@ object BH: TBH
         Left = 0
         Height = 26
         Top = 0
-        Width = 110
+        Width = 170
         Align = alLeft
         Alignment = taCenter
         DecimalPlaces = 3
@@ -387,7 +389,7 @@ object BH: TBH
         Left = 0
         Height = 53
         Top = 0
-        Width = 150
+        Width = 170
         Align = alLeft
         AutoSize = True
         BevelOuter = bvNone
@@ -395,14 +397,14 @@ object BH: TBH
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
         ClientHeight = 53
-        ClientWidth = 150
-        Constraints.MinWidth = 150
+        ClientWidth = 170
+        Constraints.MinWidth = 170
         TabOrder = 0
         object FileSizeUnit: TComboBox
           Left = 0
           Height = 25
           Top = 0
-          Width = 150
+          Width = 170
           ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
@@ -419,7 +421,7 @@ object BH: TBH
           Left = 0
           Height = 26
           Top = 27
-          Width = 150
+          Width = 170
           Alignment = taCenter
           BorderSpacing.Top = 2
           DecimalPlaces = 3
@@ -434,10 +436,10 @@ object BH: TBH
         end
       end
       object vBitValueContainer: TPanel
-        Left = 324
+        Left = 304
         Height = 53
         Top = 0
-        Width = 150
+        Width = 170
         Align = alRight
         AutoSize = True
         BevelOuter = bvNone
@@ -445,15 +447,15 @@ object BH: TBH
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
         ClientHeight = 53
-        ClientWidth = 150
-        Constraints.MinWidth = 150
+        ClientWidth = 170
+        Constraints.MinWidth = 170
         Enabled = False
         TabOrder = 1
         object vBitUnit: TComboBox
           Left = 0
           Height = 25
           Top = 0
-          Width = 150
+          Width = 170
           ItemHeight = 0
           ItemIndex = 0
           Items.Strings = (
@@ -470,7 +472,7 @@ object BH: TBH
           Left = 0
           Height = 26
           Top = 27
-          Width = 150
+          Width = 170
           Alignment = taCenter
           BorderSpacing.Top = 2
           DecimalPlaces = 3

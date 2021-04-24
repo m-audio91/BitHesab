@@ -24,7 +24,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DividerBevel, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, Spin, uUrlLabel, LCLType, IniPropStorage, Menus,
-  CommonGUIUtils;
+  CommonGUIUtils, uSimpleHelp;
 
 type
 
@@ -63,7 +63,7 @@ type
     Header: TPanel;
     HeaderTexts: TPanel;
     aBitContainer: TPanel;
-    DuratonContainer: TPanel;
+    DurationContainer: TPanel;
     OverheadContainer: TPanel;
     TargetsContainer: TPanel;
     TargetValueContainer: TPanel;
@@ -77,10 +77,12 @@ type
     DurM: TSpinEdit;
     DurS: TSpinEdit;
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FileSizeBasedChange(Sender: TObject);
     procedure IniPropsRestoringProperties(Sender: TObject);
+    function HandleCopyPasteMIClick(Sender: TMenuItem; Target: TCustomEdit): Boolean;
     procedure ABitrateMIClick(Sender: TObject);
     procedure VBitrateMIClick(Sender: TObject);
     procedure FileSizeMIClick(Sender: TObject);
@@ -88,57 +90,41 @@ type
     procedure FileSizeUnitChange(Sender: TObject);
     procedure vBitUnitChange(Sender: TObject);
     procedure CalcClick(Sender: TObject);
+    procedure LangUrlClick(Sender: TObject);
+    procedure ShowHelpClick(Sender: TObject);
   private
     {$ifdef darwin}
     MainMenu: TMainMenu;
     AppMenu: TMenuItem;
     {$endif}
+    HelpWindow: TSimpleHelp;
+    FHelpOverview,FHelpOverviewEng: String;
     FAuthorUrl,FIssuesUrl,FLicenseUrl: TUrlLabelEx;
-    FLangUrl: TCustomUrlLabel;
+    FLangUrl,FShowHelp: TCustomUrlLabel;
     FEnglishUI: Boolean;
     FMode: TCalcMode;
+    FResourceStringsFA: TStringList;
+    FResourceStringsEN: TStringList;
     function DoCalc(Dur, AB, OH, FSUnit, FS, VBUnit, VB: Double;
       CalcMode: TCalcMode): Double;
-    procedure LangUrlClick(Sender: TObject);
     procedure ChangeLang;
     procedure SetFormWidth;
     procedure SetPopupMenuValues;
+    procedure LoadResourceStrings;
   published
     property EnglishUI: Boolean read FEnglishUI write FEnglishUI;
   end;
 
-resourcestring
-  Issues='پشتیبانی و گزارش خطا';
-  IssuesUrl='https://github.com/m-audio91/BitHesab/issues';
-  Author='خانه';
+const
   AuthorUrl ='http://mohammadrezab.blogsky.com';
+  IssuesUrl='https://github.com/m-audio91/BitHesab/issues';
   LicenseVer='GPLv3';
   LicenseUrl='https://www.gnu.org/licenses/gpl-3.0.en.html';
-  LEng='English';
-  LPer='فارسی';
-  engCalc='Calculate';
-  engDuratonContainer='Duration';
-  engaBitContainer='Audio Bitrate';
-  engvBitBased='Video Bitrate';
-  engOverheadContainer='Container Overhead';
-  engFileSizeBased='File Size';
-  engHeaderTitle='BitHesab - Calculate video bitrate and file size before conversion';
-  engAuthor='Home Page';
-  engIssues='Support and Issue Reporting';
-  perCalc='محاسبه کن';
-  perDurationContainer='مدت زمان';
-  peraBitContainer='نرخ بیت صدا(ها)';
-  pervBitBased='نرخ بیت تصویر';
-  perOverheadContainer='میزان اضافه حجم حامل';
-  perFileSizeBased='حجم فایل خروجی';
-  perHeaderTitle='بیت حساب - محاسبه گر نرخ بیت ویدئو و حجم فایل خروجی قبل از تبدیل';
-
-const
-  ABitrates: array [0..11] of String = ('48','56','64','96','128','256'
+  ABitrates: array [0..14] of String = ('Copy','Paste','-','48','56','64','96','128','256'
     ,'320','448','640','768','1411','1510');
-  VBitratesKb: array [0..8] of String = ('100','200','300','400','500','600'
+  VBitratesKb: array [0..11] of String = ('Copy','Paste','-','100','200','300','400','500','600'
     ,'700','800' ,'900');
-  VBitratesMb: array [0..8] of String = ('1','2','3','5','10','15','20'
+  VBitratesMb: array [0..11] of String = ('Copy','Paste','-','1','2','3','5','10','15','20'
     ,'30','40');
 
 var
@@ -147,11 +133,16 @@ var
 implementation
 
 {$R *.lfm}
+{$R overview-fa.res} 
+{$R overview-en.res}  
+{$R resourcestrings-fa.res}
+{$R resourcestrings-en.res}
 
 { TBH }
 
 procedure TBH.FormCreate(Sender: TObject);
 begin
+  LoadResourceStrings;
   {$ifdef darwin}
     MainMenu:=TMainMenu.Create(Self);
     MainMenu.Parent:=Self;
@@ -163,8 +154,6 @@ begin
   with FAuthorUrl do
   begin
     Parent:=HeaderLinks;
-    Caption:=Author;
-    Hint:=Author;
     URL:=AuthorUrl;
     Font.Color:=$0086C6E4;
     Alignment:=taRightJustify;
@@ -173,8 +162,6 @@ begin
   with FIssuesUrl do
   begin
     Parent:=HeaderLinks;
-    Caption:=Issues;
-    Hint:=Issues;
     URL:=IssuesUrl;
     Font.Color:=$0086C6E4;
     Alignment:=taRightJustify;
@@ -191,16 +178,30 @@ begin
   with FLangUrl do
   begin
     Parent:=Footer;
-    Caption:=LEng;
     HighlightColor:=$0086C6E4;
     OnClick:=@LangUrlClick;
+  end;
+  FShowHelp:=TCustomUrlLabel.Create(Self);
+  with FShowHelp do
+  begin
+    Parent:=HeaderLinks;
+    Font.Color:=$0086C6E4;
+    Alignment:=taRightJustify;
+    OnClick:=@ShowHelpClick;
   end;
   FEnglishUI:=True;
   FMode:=cmCalcvBit;
 end;
 
+procedure TBH.FormDestroy(Sender: TObject);
+begin
+  if Assigned(FResourceStringsFA) then FResourceStringsFA.Free;
+  if Assigned(FResourceStringsEN) then FResourceStringsEN.Free;
+end;
+
 procedure TBH.FormShow(Sender: TObject);
 begin
+  CheckDisplayInScreen(Self);
   ChangeLang;
   {$ifdef linux}
   MainContainer.Color:=clForm;
@@ -212,6 +213,36 @@ end;
 procedure TBH.SetFormWidth;
 begin
   Constraints.MinWidth:=Round(HeaderTitleL.Width+HeaderIcon.Width*1.5);
+end;
+
+procedure TBH.LoadResourceStrings;
+var
+  rs: TResourceStream;
+  Enc: TEncoding;
+begin
+  Enc:=Default(TEncoding);
+  FResourceStringsFA:=TStringList.Create;
+  FResourceStringsFA.DefaultEncoding:=Enc.UTF8;
+  FResourceStringsFA.NameValueSeparator:='~';
+  FResourceStringsEN:=TStringList.Create;
+  FResourceStringsEN.DefaultEncoding:=Enc.UTF8;
+  FResourceStringsEN.NameValueSeparator:='~';
+  rs:=TResourceStream.Create(HInstance, 'OVERVIEW-FA', RT_RCDATA);
+  FResourceStringsFA.LoadFromStream(rs, Enc.UTF8);
+  FHelpOverview:=FResourceStringsFA.Text;
+  rs.Free;
+  FResourceStringsFA.Clear;
+  rs:=TResourceStream.Create(HInstance, 'RESOURCESTRINGS-FA', RT_RCDATA);
+  FResourceStringsFA.LoadFromStream(rs, Enc.UTF8);
+  rs.Free;
+  rs:=TResourceStream.Create(HInstance, 'OVERVIEW-EN', RT_RCDATA);
+  FResourceStringsEN.LoadFromStream(rs, Enc.UTF8);
+  FHelpOverviewEng:=FResourceStringsEN.Text;
+  rs.Free;
+  FResourceStringsEN.Clear;
+  rs:=TResourceStream.Create(HInstance, 'RESOURCESTRINGS-EN', RT_RCDATA);
+  FResourceStringsEN.LoadFromStream(rs, Enc.UTF8);
+  rs.Free;
 end;
 
 procedure TBH.SetPopupMenuValues;
@@ -231,23 +262,38 @@ procedure TBH.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key=VK_RETURN then
     CalcClick(Calc);
-end; 
+end;
+
+function TBH.HandleCopyPasteMIClick(Sender: TMenuItem;
+  Target: TCustomEdit): Boolean;
+begin
+  Result:= True;
+  if String(Sender.Caption).Equals('Copy') then
+    Target.CopyToClipboard
+  else if String(Sender.Caption).Equals('Paste') then
+    Target.PasteFromClipboard
+  else
+    Result:=False;
+end;
 
 procedure TBH.ABitrateMIClick(Sender: TObject);
 begin
-  ABit.Value:=String((Sender as TMenuItem).Caption).ToInteger; 
+  if not HandleCopyPasteMIClick((Sender as TMenuItem), aBit) then
+    aBit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
   CalcClick(Calc);
 end;
 
 procedure TBH.VBitrateMIClick(Sender: TObject);
 begin
-  VBit.Value:=String((Sender as TMenuItem).Caption).ToInteger; 
+  if not HandleCopyPasteMIClick((Sender as TMenuItem), vBit) then
+    vBit.Value:=String((Sender as TMenuItem).Caption).ToInteger;
   CalcClick(Calc);
 end;
 
 procedure TBH.FileSizeMIClick(Sender: TObject);
 begin
-  FileSize.Value:=String((Sender as TMenuItem).Caption).ToInteger;
+  if not HandleCopyPasteMIClick((Sender as TMenuItem), FileSize) then
+    FileSize.Value:=String((Sender as TMenuItem).Caption).ToInteger;
   CalcClick(Calc);
 end;
 
@@ -387,34 +433,68 @@ begin
   ChangeLang;
 end;
 
+procedure TBH.ShowHelpClick(Sender: TObject);
+var
+  sl: TStringList;
+begin
+  if not Assigned(HelpWindow) then
+  begin
+    HelpWindow:=TSimpleHelp.Create(Self);
+    with HelpWindow do
+    begin
+      HeaderColor:=$00424242;
+      TitleColor:=$0086C6E4;
+      HeadingColor:=$0086C6E4;
+    end;
+  end;
+  with HelpWindow do
+  begin
+    Clear;
+    if EnglishUI then
+    begin 
+      BiDiModeContents:=bdLeftToRight;
+      sl:=FResourceStringsEN;
+      Title:=sl.Values['Help'];
+      AddSection(sl.Values['BitrateCalculatorOverview']);
+      Add(FHelpOverviewEng);
+    end
+    else
+    begin
+      BiDiModeContents:=bdRightToLeft;
+      sl:=FResourceStringsFA;
+      Title:=sl.Values['Help'];
+      AddSection(sl.Values['BitrateCalculatorOverview']);
+      Add(FHelpOverview);
+    end;
+    AddSection(sl.Values['OptionsHelp']);
+    AddCollapsible(sl.Values['Duration'],sl.Values['DurationDesc']);
+    AddCollapsible(sl.Values['aBit'],sl.Values['aBitDesc']);
+    AddCollapsible(sl.Values['ContainerOverhead'],sl.Values['ContainerOverheadDesc']);
+    AddCollapsible(sl.Values['vBit'],sl.Values['vBitDesc']);
+    AddCollapsible(sl.Values['FileSize'],sl.Values['FileSizeDesc']);
+    Show;
+  end;
+end;
+
 procedure TBH.ChangeLang;
+var
+  sl: TStringList;
 begin
   if EnglishUI then
-  begin
-    Calc.Caption:=engCalc;
-    DuratonContainer.Caption:=engDuratonContainer;
-    aBitContainer.Caption:=engaBitContainer;
-    vBitBasedL.Caption:=engvBitBased;
-    OverheadContainer.Caption:=engOverheadContainer;
-    FileSizeBasedL.Caption:=engFileSizeBased;
-    HeaderTitleL.Caption:=engHeaderTitle;
-    FAuthorUrl.Caption:=engAuthor;
-    FIssuesUrl.Caption:=engIssues;
-    FLangUrl.Caption:=LPer;
-  end
+    sl:=FResourceStringsEN
   else
-  begin
-    Calc.Caption:=perCalc;
-    DuratonContainer.Caption:=perDurationContainer;
-    aBitContainer.Caption:=peraBitContainer;
-    vBitBasedL.Caption:=pervBitBased;
-    OverheadContainer.Caption:=perOverheadContainer;
-    FileSizeBasedL.Caption:=perFileSizeBased;
-    HeaderTitleL.Caption:=perHeaderTitle;
-    FAuthorUrl.Caption:=Author;
-    FIssuesUrl.Caption:=Issues;
-    FLangUrl.Caption:=LEng;
-  end;
+    sl:=FResourceStringsFA;
+  Calc.Caption:=sl.Values['Calc'];
+  DurationContainer.Caption:=sl.Values['Duration'];
+  aBitContainer.Caption:=sl.Values['aBit'];
+  vBitBasedL.Caption:=sl.Values['vBit'];
+  OverheadContainer.Caption:=sl.Values['ContainerOverhead'];
+  FileSizeBasedL.Caption:=sl.Values['FileSize'];
+  HeaderTitleL.Caption:=sl.Values['Title'];
+  FAuthorUrl.Caption:=sl.Values['Author'];
+  FIssuesUrl.Caption:=sl.Values['Issues'];
+  FShowHelp.Caption:=sl.Values['Help'];
+  FLangUrl.Caption:=sl.Values['Lang'];
   SetFormWidth;
 end;
 
