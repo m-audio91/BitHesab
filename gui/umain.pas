@@ -93,10 +93,6 @@ type
     procedure LangUrlClick(Sender: TObject);
     procedure ShowHelpClick(Sender: TObject);
   private
-    {$ifdef darwin}
-    MainMenu: TMainMenu;
-    AppMenu: TMenuItem;
-    {$endif}
     HelpWindow: TSimpleHelp;
     FHelpOverview,FHelpOverviewEng: String;
     FAuthorUrl,FIssuesUrl,FLicenseUrl: TUrlLabelEx;
@@ -145,13 +141,7 @@ implementation
 procedure TBH.FormCreate(Sender: TObject);
 begin
   LoadResourceStrings;
-  {$ifdef darwin}
-    MainMenu:=TMainMenu.Create(Self);
-    MainMenu.Parent:=Self;
-    AppMenu:=TMenuItem.Create(Self);
-    AppMenu.Caption:=#$EF#$A3#$BF;
-    MainMenu.Items.Insert(0, AppMenu);
-  {$endif}
+  DefaultMacOSMenu(Self);
   FAuthorUrl:=TUrlLabelEx.Create(Self);
   with FAuthorUrl do
   begin
