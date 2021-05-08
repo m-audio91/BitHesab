@@ -116,15 +116,17 @@ type
   end;
 
 const
+  LINK_COLOR:TColor=$0086C6E4;
+  HEADER_COLOR:TColor=$00424242;
   AuthorUrl ='http://mohammadrezab.blogsky.com';
   IssuesUrl='https://github.com/m-audio91/BitHesab/issues';
   LicenseVer='GPLv3';
   LicenseUrl='https://www.gnu.org/licenses/gpl-3.0.en.html';
-  ABitrates: array [0..14] of String = ('Copy','Paste','-','48','56','64','96','128','256'
+  ABitrates: array [0..14] of String = ('Copy','Paste',MenuSep,'48','56','64','96','128','256'
     ,'320','448','640','768','1411','1510');
-  VBitratesKb: array [0..11] of String = ('Copy','Paste','-','100','200','300','400','500','600'
+  VBitratesKb: array [0..11] of String = ('Copy','Paste',MenuSep,'100','200','300','400','500','600'
     ,'700','800' ,'900');
-  VBitratesMb: array [0..11] of String = ('Copy','Paste','-','1','2','3','5','10','15','20'
+  VBitratesMb: array [0..11] of String = ('Copy','Paste',MenuSep,'1','2','3','5','10','15','20'
     ,'30','40');
 
 var
@@ -155,7 +157,7 @@ begin
   begin
     Parent:=HeaderLinks;
     URL:=AuthorUrl;
-    Font.Color:=$0086C6E4;
+    Font.Color:=LINK_COLOR;
     Alignment:=taRightJustify;
   end;
   FIssuesUrl:=TUrlLabelEx.Create(Self);
@@ -163,7 +165,7 @@ begin
   begin
     Parent:=HeaderLinks;
     URL:=IssuesUrl;
-    Font.Color:=$0086C6E4;
+    Font.Color:=LINK_COLOR;
     Alignment:=taRightJustify;
   end;
   FLicenseUrl:=TUrlLabelEx.Create(Self);
@@ -172,20 +174,20 @@ begin
     Parent:=Footer;
     Caption:=LicenseVer;
     URL:=LicenseUrl;
-    HighlightColor:=$0086C6E4;
+    HighlightColor:=LINK_COLOR;
   end;
   FLangUrl:=TCustomUrlLabel.Create(Self);
   with FLangUrl do
   begin
     Parent:=Footer;
-    HighlightColor:=$0086C6E4;
+    HighlightColor:=LINK_COLOR;
     OnClick:=@LangUrlClick;
   end;
   FShowHelp:=TCustomUrlLabel.Create(Self);
   with FShowHelp do
   begin
     Parent:=HeaderLinks;
-    Font.Color:=$0086C6E4;
+    Font.Color:=LINK_COLOR;
     Alignment:=taRightJustify;
     OnClick:=@ShowHelpClick;
   end;
@@ -442,9 +444,9 @@ begin
     HelpWindow:=TSimpleHelp.Create(Self);
     with HelpWindow do
     begin
-      HeaderColor:=$00424242;
-      TitleColor:=$0086C6E4;
-      HeadingColor:=$0086C6E4;
+      HeaderColor:=HEADER_COLOR;
+      TitleColor:=LINK_COLOR;
+      HeadingColor:=LINK_COLOR;
     end;
   end;
   with HelpWindow do
