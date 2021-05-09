@@ -437,6 +437,7 @@ begin
       HeaderColor:=HEADER_COLOR;
       TitleColor:=LINK_COLOR;
       HeadingColor:=LINK_COLOR;
+      AllowBreak:=True;
     end;
   end;
   with HelpWindow do
@@ -452,6 +453,7 @@ begin
     end
     else
     begin
+      MaxLineLength:=120;
       BiDiModeContents:=bdRightToLeft;
       sl:=FResourceStringsFA;
       Title:=sl.Values['Help'];
