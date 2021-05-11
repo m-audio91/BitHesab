@@ -444,7 +444,8 @@ begin
   begin
     Clear;
     if EnglishUI then
-    begin 
+    begin
+      MaxLineLength:=80;
       BiDiModeContents:=bdLeftToRight;
       sl:=FResourceStringsEN;
       Title:=sl.Values['Help'];
