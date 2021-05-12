@@ -9,9 +9,9 @@ Free video bitrate/file size calculator. available in both CLI and GUI versions 
 Copyright (C) 2019 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
 ### compilation guide:  
-1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) repository. (if you clone my repo's with lowercase name like `(git clone https://github.com/m-audio91/CommonUtils commonutils)` then you won't have to do step 3 because the path's are relative, in fact I recommend this)
+1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) repository. (note: if you clone my repo's with lowercase name like `(git clone https://github.com/m-audio91/CommonUtils commonutils)` then you won't have to do step 3 because the path's are relative, in fact I recommend this)
 2. update your Free Pascal and Lazarus to at least the version mentioned in [latest BitHesab release](https://github.com/m-audio91/BitHesab/releases) description. use [fpcupdeluxe](https://github.com/newpascal/fpcupdeluxe) if you have problem updating.
-3. open the project (bithesabgui.lpi or bithesab.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* folder to your unit search paths for every build target.
+3. open the project (bithesabgui.lpi or bithesab.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* folder to your unit search paths for every build target (see note on step 1 to see how to skip this step).
 4. compile and run.
 5. issues? please report [here](https://github.com/m-audio91/BitHesab/issues)
 
