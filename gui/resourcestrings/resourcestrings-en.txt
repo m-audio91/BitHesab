@@ -1,0 +1,18 @@
+Lang~فارسی
+Title~BitHesab - Calculate video bitrate and file size before conversion
+Issues~Support and Issue Reporting
+Author~Home Page
+Help~Help
+BitrateCalculatorOverview~About video bitrate calculator
+OptionsHelp~About options
+Calc~Calculate
+aBit~Audio Stream(s) Bitrate
+aBitDesc~Set your audio stream bitrate here in Kilobits/sec. if there are more than one stream, enter sum of their bitrate here or if your file hase no audio stream, simply put 0. It is possible that you want to encode a standalone audio file without video. in this case it is best to set this field to 0 and consider the Video Bitrate field as audio bitrate.
+vBit~Video Bitrate
+vBitDesc~By selecting this radio button you can enter your desired value for video bitrate and get the resulting file size. you can choose between Kilobits/sec and Megabits/sec as needed.
+ContainerOverhead~Container Overhead
+ContainerOverheadDesc~Some container formats like M2TS have huge headers compaired to others. resulting in an increased file size as high as about 7 percent (varies by things like format and number of the streams etc). Container formats like MKV have such low overhead that can be ignored for most users.
+FileSize~File Size
+FileSizeDesc~By selecting this radio button you can directly enter you desired file size and calculate the resulting video bitrate. you can choose between Megabytes and Gigabytes as needed.
+Duration~Duration
+DurationDesc~Set your input file duration here, in form of Hours:Minutes:Seconds.
