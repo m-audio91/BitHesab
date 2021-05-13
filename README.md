@@ -5,7 +5,7 @@ v1.3.0 GUI
 v1.0.5 CLI
 
 Free video bitrate/file size calculator. available in both CLI and GUI versions for Windows, MacOS, Linux and ARM-Linux(experimental).  
-ببیت حساب - محاسبه نخ بیت و حجم فایل ویدئویی قبل از تبدیل. موجود در دو نسخه کنسولی و ظاهر گرافیکی. موجود برای سیستم عامل های ویندوز، مک اواس، لینوکس و اِی آر اِم-لینوکس (آزمایشی)  
+ببیت حساب - محاسبه نرخ بیت و حجم فایل ویدئویی قبل از تبدیل. موجود در دو نسخه کنسولی و ظاهر گرافیکی. موجود برای سیستم عامل های ویندوز، مک اواِس، لینوکس و اِی آر اِم-لینوکس (آزمایشی)  
   
 Copyright (C) 2019 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
