@@ -4,19 +4,13 @@
 v1.3.0 GUI  
 v1.0.5 CLI
 
-Free video bitrate/file size calculator. available in both CLI and GUI versions for Windows, MacOS, Linux and ARM-Linux(experimental).
-
+Free video bitrate/file size calculator. available in both CLI and GUI versions for Windows, MacOS, Linux and ARM-Linux(experimental).  
+ببیت حساب - محاسبه نخ بیت و حجم فایل ویدئویی قبل از تبدیل. موجود در دو نسخه کنسولی و ظاهر گرافیکی. موجود برای سیستم عامل های ویندوز، مک اواس، لینوکس و اِی آر اِم-لینوکس (آزمایشی)  
+  
 Copyright (C) 2019 Mohammadreza Bahrami, m.audio91 [AT] gmail.com  
   
-### compilation guide:  
-1. clone this repository plus [CommonUtils](https://github.com/m-audio91/CommonUtils) repository. (note: if you clone my repo's with lowercase name like `(git clone https://github.com/m-audio91/CommonUtils commonutils)` then you won't have to do step 3 because the path's are relative, in fact I recommend this)
-2. update your Free Pascal and Lazarus to at least the version mentioned in [latest BitHesab release](https://github.com/m-audio91/BitHesab/releases) description. use [fpcupdeluxe](https://github.com/newpascal/fpcupdeluxe) if you have problem updating.
-3. open the project (bithesabgui.lpi or bithesab.lpi) in Lazarus and go to `project > project options > compiler options > paths > Other unit files` to add *CommonUtils* folder to your unit search paths for every build target (see note on step 1 to see how to skip this step).
-4. compile and run.
-5. issues? please report [here](https://github.com/m-audio91/BitHesab/issues)
+[**د انلود تازه ترین نسخه - Download Latest Version**](https://github.com/m-audio91/BitHesab/releases/latest)  
+[**آموزش کامپایل سورس بیت حساب برای برنامه نویسان - Compilation guide for programers**](https://github.com/m-audio91/BitHesab/wiki/Compilation-guide---%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%DA%A9%D8%A7%D9%85%D9%BE%D8%A7%DB%8C%D9%84-%D8%B3%D8%B1%D9%88%D8%B3-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87)
 
-
-[**دانلود تازه ترین نسخه**](https://github.com/m-audio91/BitHesab/releases/latest)  
-[**Download Latest Version**](https://github.com/m-audio91/BitHesab/releases/latest)
 
 
